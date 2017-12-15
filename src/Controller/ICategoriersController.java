@@ -2,18 +2,18 @@ package Controller;
 
 import java.util.List;
 import model.Categories;
-import model.Fut;
+import model.FutExample;
 
 public interface ICategoriersController {
 	public Categories addCatégorie (Categories C);
-	public Fut addFut(Fut F);
+	public FutExample addFut(FutExample F);
 	public List<Categories> ListCategories() ;
-	public List<Fut> listFutCat(Long idCategorie);
-	public List<Fut> listFut();
-	public List<Fut> listFutName(String Name);
+	public List<FutExample> listFutCat(Long idCategorie);
+	public List<FutExample> listFut();
+	public List<FutExample> listFutName(String Name);
 	public Categories updateCategories(Categories C);
-	public Fut updateCategories(Fut F);
+	public FutExample updateCategories(FutExample F);
 	public boolean DeleteFuts(Long Fut_id);
 	public Categories getCategorier(Long idCategories);
-	public Fut getFut(Long Fut_Id);
+	public FutExample getFut(Long Fut_Id);
 }

@@ -9,6 +9,11 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink">
+		<attributes>
+			<attribute name="owner.project.facets" value="#system#;jpt.jpa"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/Tomcat"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

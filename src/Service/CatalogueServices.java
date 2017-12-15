@@ -11,14 +11,17 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import model.Categorie;
 import model.Categories;
-import model.Fut;
+import model.FutExample;
 import Controller.metier.CategoriesFut;
+import Dao.CatalogueFutDAO;
 
 @Path("/Catalogue")
 @Produces(MediaType.APPLICATION_JSON+";charset=utf-8")
 public class CatalogueServices {
 private CategoriesFut cat;
+private CatalogueFutDAO Cataloguedao;
 
 public CatalogueServices() {
 	cat = new CategoriesFut();
@@ -26,17 +29,17 @@ public CatalogueServices() {
 }
 @GET
 @Path("/categories")
-public List<Categories> ConsulterCategories(){
-	return cat.ListCategories();
+public List<Categorie> ConsulterCategories(){
+	return Cataloguedao.ListCategories();
 }
 @GET
 @Path("/Categorie/{idcat}/fut")
-public List<Fut> CategorieFut(@PathParam(value ="idcat")Long idcat){
+public List<FutExample> CategorieFut(@PathParam(value ="idcat")Long idcat){
 	return cat.listFutCat(idcat);
 }
 @GET
-@Path("/Fut")
-public List<Fut> ListFut(@QueryParam(value ="Futname")String Futname){
+@Path("/																																																																																																		")
+public List<FutExample> ListFut(@QueryParam(value ="Futname")String Futname){
 	return cat.listFutName(Futname);
 }
 @GET
@@ -45,8 +48,8 @@ public Categories GetCategories(@PathParam(value="idCat")Long idCat){
 	return cat.getCategorier(idCat);
 }
 @GET
-@Path("/Fut/{Fut_Id}")
-public Fut GetFut(@PathParam(value="Fut_Id")Long Fut_Id){
+@Path("/FutExample/{Fut_Id}")
+public FutExample GetFut(@PathParam(value="Fut_Id")Long Fut_Id){
 	return cat.getFut(Fut_Id);
 }
 @GET

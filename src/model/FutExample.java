@@ -2,7 +2,7 @@ package model;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-public class Fut {
+public class FutExample {
 	private Long Fut_Id;
 	private String Fut_Name;
 	private boolean Fut_Etat;
@@ -32,20 +32,20 @@ public class Fut {
 	public void setFut_Etat(boolean fut_Etat) {
 		Fut_Etat = fut_Etat;
 	}
-	public Fut(Long fut_Id, String fut_Name, boolean fut_Etat) {
+	public FutExample(Long fut_Id, String fut_Name, boolean fut_Etat) {
 		super();
 		Fut_Id = fut_Id;
 		Fut_Name = fut_Name;
 		Fut_Etat = fut_Etat;
 	}
-	public Fut(Long fut_Id, String fut_Name, boolean fut_Etat,Categories categorie) {
+	public FutExample(Long fut_Id, String fut_Name, boolean fut_Etat,Categories categorie) {
 		super();
 		Fut_Id = fut_Id;
 		Fut_Name = fut_Name;
 		Fut_Etat = fut_Etat;
 		this.categorie = categorie;
 	}
-	public Fut() {
+	public FutExample() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

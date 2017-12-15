@@ -2,13 +2,13 @@ package Controller.metier;
 
 import java.util.*;
 import model.Categories;
-import model.Fut;
+import model.FutExample;
 import Controller.ICategoriersController;
 
 public class CategoriesFut implements ICategoriersController {
     
 	private Map<Long, Categories> categories = new HashMap<Long, Categories>();
-	private Map<Long, Fut> fut = new HashMap<Long, Fut>();
+	private Map<Long, FutExample> futExample = new HashMap<Long, FutExample>();
 	
 	@Override
 	public Categories addCatégorie(Categories C) {
@@ -17,9 +17,9 @@ public class CategoriesFut implements ICategoriersController {
 	}
 
 	@Override
-	public Fut addFut(Fut F) {
+	public FutExample addFut(FutExample F) {
 	    F.setCategorie(getCategorier(F.getCategorie().getIdCategorie()));
-		fut.put(F.getFut_Id(), F);
+		futExample.put(F.getFut_Id(), F);
 		return F;
 	}
 
@@ -30,29 +30,29 @@ public class CategoriesFut implements ICategoriersController {
 	}
 
 	@Override
-	public List<Fut> listFutCat(Long idCategorie) {
-		List<Fut> futs = new ArrayList<Fut>();
+	public List<FutExample> listFutCat(Long idCategorie) {
+		List<FutExample> futExamples = new ArrayList<FutExample>();
 		
-		for(Fut ft:fut.values())
+		for(FutExample ft:futExample.values())
 		{
 			if(ft.getCategorie().getIdCategorie().equals(idCategorie))
-			futs.add(ft);
+			futExamples.add(ft);
 		}
-		return futs;
+		return futExamples;
 	}
 
 	@Override
-	public List<Fut> listFut() {
+	public List<FutExample> listFut() {
 		// TODO Auto-generated method stub
-		return new ArrayList<Fut>(fut.values());
+		return new ArrayList<FutExample>(futExample.values());
 	}
 
 	@Override
-	public List<Fut> listFutName(String Name) {
-		List<Fut> FutName = new ArrayList<Fut>();
-	for (Fut fut : fut.values()) {
-		if(fut.getFut_Name().contains(Name))
-			{FutName.add(fut);}
+	public List<FutExample> listFutName(String Name) {
+		List<FutExample> FutName = new ArrayList<FutExample>();
+	for (FutExample futExample : futExample.values()) {
+		if(futExample.getFut_Name().contains(Name))
+			{FutName.add(futExample);}
 	}
 		return FutName;
 	}
@@ -64,19 +64,19 @@ public class CategoriesFut implements ICategoriersController {
 	}
 
 	@Override
-	public Fut updateCategories(Fut F) {
-	      fut.put(F.getFut_Id(), F);
+	public FutExample updateCategories(FutExample F) {
+	      futExample.put(F.getFut_Id(), F);
 		return F;
 	}
 
 	@Override
 	public boolean DeleteFuts(Long Fut_id) {
-		if(fut.get(Fut_id)!=null)
+		if(futExample.get(Fut_id)!=null)
 		{
-			fut.remove(Fut_id);
+			futExample.remove(Fut_id);
 			return true;
 		}
-		else throw new RuntimeException("Fut Introuveble");
+		else throw new RuntimeException("FutExample Introuveble");
 	}
 
 	@Override
@@ -86,9 +86,9 @@ public class CategoriesFut implements ICategoriersController {
 	}
 
 	@Override
-	public model.Fut getFut(Long Fut_Id) {
+	public model.FutExample getFut(Long Fut_Id) {
 		// TODO Auto-generated method stub
-		return fut.get(Fut_Id) ;
+		return futExample.get(Fut_Id) ;
 	}
 	public void Initialise()
 	{
@@ -96,9 +96,9 @@ public class CategoriesFut implements ICategoriersController {
 		addCatégorie(new Categories(2L, "Mauvais", "photo2.JPG"));
 		addCatégorie(new Categories(3L, "Cassée", "photo3.JPG"));
 	
-		fut.put(1L, new Fut(1L, "10,5l Lava", true, getCategorier(1L)));
-		fut.put(2L, new Fut(2L, "Grays", true, getCategorier(2L)));
-		fut.put(3L, new Fut(3L, "10.5 Croisé", true, getCategorier(1L)));
+		futExample.put(1L, new FutExample(1L, "10,5l Lava", true, getCategorier(1L)));
+		futExample.put(2L, new FutExample(2L, "Grays", true, getCategorier(2L)));
+		futExample.put(3L, new FutExample(3L, "10.5 Croisé", true, getCategorier(1L)));
 	
 		
 	}

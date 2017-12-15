@@ -18,4 +18,8 @@
   <servlet-name>jersey-serlvet</servlet-name>
   <url-pattern>/*</url-pattern>
  </servlet-mapping>
+    <persistence-context-ref>
+        <persistence-context-ref-name>persistence/em</persistence-context-ref-name>
+        <persistence-unit-name>CatalogueFutService</persistence-unit-name>
+    </persistence-context-ref>
 </web-app>

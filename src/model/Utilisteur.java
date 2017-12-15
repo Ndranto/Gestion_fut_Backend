@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NamedQueries({
 @NamedQuery(name="Utilisteur.findAll", query="SELECT u FROM Utilisteur u"),
-@NamedQuery(name="Utilisteur.findAll", query="SELECT u FROM Utilisteur u"),})
+@NamedQuery(name="Utilisteur.findAllId", query="SELECT u FROM Utilisteur u where u.user_Id = :id"),})
 public class Utilisteur implements Serializable {
 	private static final long serialVersionUID = 1L;
   
@@ -24,7 +24,7 @@ public class Utilisteur implements Serializable {
 	private String user_Name;
 
 	 @Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 @Column(name="\"User_Id\"")
 	private int user_Id;
 	 

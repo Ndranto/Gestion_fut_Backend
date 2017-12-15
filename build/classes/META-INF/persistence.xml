@@ -4,6 +4,8 @@
 	<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>model.Client</class>
 		<class>model.Utilisteur</class>
+		<class>model.CatalogueFut</class>
+		<class>model.Categorie</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Inventory"/>

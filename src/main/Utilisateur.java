@@ -7,6 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import Dao.CatalogueFut;
+import model.Categorie;
 import model.Utilisteur;
 
 public class Utilisateur {
@@ -14,7 +16,7 @@ public class Utilisateur {
 	{
 		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut" );
 		EntityManager entitymanager = emfactory.createEntityManager();
-			entitymanager.getTransaction( ).begin( );
+				CatalogueFut f = new CatalogueFut();
 		/*  ---------------------Create -------------------*/
 	/*EntityManagerFactory emfactory = Persistence.
 	createEntityManagerFactory( "Jax-rs_Gestion_Fut" );
@@ -31,7 +33,7 @@ public class Utilisateur {
 	emfactory.close( );*/
 		
 		/*  ---------------------Find -------------------
-	/* EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut" );
+	    /* EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut" );
 			EntityManager entitymanager = emfactory.createEntityManager();
 			Utilisteur employee =  entitymanager.find( Utilisteur.class, 1 );
 			System.out.println("ID = "+employee.getUser_Id());
@@ -56,14 +58,25 @@ public class Utilisateur {
 			System.out.println( employee );
 			entitymanager.close();
 			emfactory.close();*/
-			/*  ---------------------liste des Utilisateur -------------------*/
-			Query query = entitymanager.createNamedQuery("Utilisteur.findAll");
-					List<Utilisteur> list=query.getResultList();
-					for(Utilisteur e:list)
+			/*  ---------------------list of the User & use @NameQuery -------------------
+			Query query = entitymanager.createNamedQuery("Categorie.findAll");
+					List<Categorie> list=query.getResultList();
+					for(Categorie e:list)
 					{
-					System.out.println("Utilisateur NAME :"+e.getUser_Name());
-					System.out.println("Utilisateur NAME :"+e.getUse_Pw());
-					System.out.println("Utilisateur NAME :"+e.getUser_Id());
+					System.out.println("Id NAME :"+e.getCatId());
+					System.out.println("Cat NAME :"+e.getCatFut());
 					}
+			/*  ---------------------Find user & use @NameQuery -------------------
+			Query query = entitymanager.createNamedQuery(
+					"Utilisteur.findAllId");
+					query.setParameter("id", 1);
+					List<Utilisteur> list = query.getResultList( );
+					for( Utilisteur e:list )
+					{
+					System.out.print(" ID :"+e.getUser_Id ());
+					System.out.println("\t  Name :"+e.getUser_Name());
+					System.out.println("\t Employee Name :"+e.getUse_Pw());
+					}*/
+		System.out.println("Cat NAME :"+f.ListCategories());
 	}
 }
