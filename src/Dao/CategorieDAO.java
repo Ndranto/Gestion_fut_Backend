@@ -1,44 +1,19 @@
 package Dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import javax.ws.rs.GET;
 
 import model.CatalogueFut;
 import model.Categorie;
-import Controller.ICollectionFutCategorie;
 
-public class CatalogueFutDAO  {
-
+public class CategorieDAO {
 	public ConnectionFactory daoFactory;
-
-	
-	
-	
-	public CatalogueFut addFut(CatalogueFut F) {
-		
-		return null;
-	}
-	
-	
-	public List<CatalogueFut> FindById(Integer idCategorie) {
-		daoFactory = new ConnectionFactory();
-	    Query query = daoFactory.getEntityManager("Jax-rs_Gestion_Fut").createNamedQuery("CatalogueFut.findAllId");
-		query.setParameter("idFut",idCategorie);
-		List<CatalogueFut> list = query.getResultList( );
-		return null;
-	}
-	
-	
 	public List<Categorie> getAll() {
-		daoFactory = new ConnectionFactory();
-		Query query =daoFactory.getEntityManager("Jax-rs_Gestion_Fut").createNamedQuery("CatalogueFut.findAll");
-		List<Categorie> list=query.getResultList();
+		Query query =daoFactory .getEntityManager("Jax-rs_Gestion_Fut").createNamedQuery("Categorie.findAll");
+		  List<Categorie> list=query.getResultList();
 		return list;
 	}
 	
@@ -60,9 +35,7 @@ public class CatalogueFutDAO  {
 		return true;
 	}
 	
-
-	
-	public CatalogueFut Update(CatalogueFut F) {
+	public CatalogueFut update(CatalogueFut F) {
 		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut") ;
 		CatalogueFut Catfut =  daoFactory.getEntityManager("Jax-rs_Gestion_Fut").find( CatalogueFut.class, F.getFutId() );
 		Catfut.setFutNomCatalogueFut("dqfq");
@@ -78,6 +51,12 @@ public class CatalogueFutDAO  {
 		return false;
 	}
 	
+	public List<CatalogueFut> findById(Integer idCategorie) {
+		daoFactory = new ConnectionFactory();
+	    Query query = daoFactory.getEntityManager("Jax-rs_Gestion_Fut").createNamedQuery("CatalogueFut.findAllId");
+		query.setParameter("idFut",idCategorie);
+		List<CatalogueFut> list = query.getResultList( );
+		return null;
+	}
 
-		
 }

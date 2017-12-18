@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -21,10 +20,6 @@ public class Categorie implements Serializable {
 	@Column(name="cat_fut")
 	private String catFut;
 
-	//bi-directional many-to-one association to CatalogueFut
-	@OneToMany(mappedBy="categorie")
-	private List<CatalogueFut> catalogueFuts;
-
 	public Categorie() {
 	}
 
@@ -42,28 +37,6 @@ public class Categorie implements Serializable {
 
 	public void setCatFut(String catFut) {
 		this.catFut = catFut;
-	}
-
-	public List<CatalogueFut> getCatalogueFuts() {
-		return this.catalogueFuts;
-	}
-
-	public void setCatalogueFuts(List<CatalogueFut> catalogueFuts) {
-		this.catalogueFuts = catalogueFuts;
-	}
-
-	public CatalogueFut addCatalogueFut(CatalogueFut catalogueFut) {
-		getCatalogueFuts().add(catalogueFut);
-		catalogueFut.setCategorie(this);
-
-		return catalogueFut;
-	}
-
-	public CatalogueFut removeCatalogueFut(CatalogueFut catalogueFut) {
-		getCatalogueFuts().remove(catalogueFut);
-		catalogueFut.setCategorie(null);
-
-		return catalogueFut;
 	}
 
 }

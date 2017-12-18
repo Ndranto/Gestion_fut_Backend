@@ -3,39 +3,31 @@ package Service;
 
 
 import java.util.List;
-
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-
+import Dao.CatalogueFutDAO;
 import model.Categorie;
-import model.Categories;
-import Dao.CatalogueFut;
+import model.CatalogueFut;
 
 
 @Path("/fut")
 @Stateless
 @LocalBean
+@Produces(MediaType.APPLICATION_JSON+"; charset=UTF-8")
 public class CatalogueFutService {
 	
 	EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut" );
 	EntityManager entitymanager = emfactory.createEntityManager();
 	CatalogueFut f = new CatalogueFut();
+	CatalogueFutDAO catdao;
 	private CatalogueFut Cataloguedao;
-	@GET
-	@Path("/categories")
-	public String ConsulterCategories()  {
-		
-		return Cataloguedao.ListCategories();
-	}
-	
+
 	
 	
 	/* List of category */
@@ -45,7 +37,7 @@ public class CatalogueFutService {
     public List<Categorie>   ListCategorie() {
     	Query query = entitymanager.createNamedQuery("Categorie.findAll");
 		List<Categorie> list=query.getResultList();
-        return list;
+        return catdao.getAll();
     }
     
     
@@ -55,10 +47,16 @@ public class CatalogueFutService {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/Listfut")
     public List<CatalogueFut>   ListFut() {
-    	Query query = entitymanager.createNamedQuery("CatalogueFut.findAll");
-		List<CatalogueFut> list=query.getResultList();
-        return list;
+    	catdao = new CatalogueFutDAO();
+        return catdao.getAll();
     }
     
+    /* find the name of product fut */
+    @GET
+    @Path("/Listfut/{NameFut}")
+    public List<CatalogueFut>   ListfutName(@PathParam(value="NameFut")String Name) {
+    	catdao = new CatalogueFutDAO();
+        return catdao.FindByName(Name);
+    }
     
 }

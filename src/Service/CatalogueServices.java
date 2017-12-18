@@ -30,7 +30,7 @@ public CatalogueServices() {
 @GET
 @Path("/categories")
 public List<Categorie> ConsulterCategories(){
-	return Cataloguedao.ListCategories();
+	return Cataloguedao.getAll();
 }
 @GET
 @Path("/Categorie/{idcat}/fut")

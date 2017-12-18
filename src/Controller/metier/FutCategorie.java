@@ -36,14 +36,14 @@ public class FutCategorie implements ICollectionFutCategorie {
 	@Override
 	public List<CatalogueFut> listFutCategorie(Integer idCategorie) {
          
-		List<CatalogueFut> futCategorie = new ArrayList<CatalogueFut>();
+	/*	List<CatalogueFut> futCategorie = new ArrayList<CatalogueFut>();
 		
 		for(CatalogueFut ft:fut.values())
 		{
 			if(ft.getCategorie().getCatId().equals(idCategorie));
 			futCategorie.add(ft);
-		}
-		return futCategorie;
+		}*/
+		return null;
 	}
 
 	@Override

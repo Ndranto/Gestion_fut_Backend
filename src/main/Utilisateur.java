@@ -5,18 +5,15 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+import Dao.CatalogueFutDAO;
 
-import Dao.CatalogueFut;
-import model.Categorie;
-import model.Utilisteur;
 
 public class Utilisateur {
 	public static void main( String[ ] args )
 	{
 		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut" );
 		EntityManager entitymanager = emfactory.createEntityManager();
-				CatalogueFut f = new CatalogueFut();
+				CatalogueFutDAO f = new CatalogueFutDAO();
 		/*  ---------------------Create -------------------*/
 	/*EntityManagerFactory emfactory = Persistence.
 	createEntityManagerFactory( "Jax-rs_Gestion_Fut" );
@@ -77,6 +74,6 @@ public class Utilisateur {
 					System.out.println("\t  Name :"+e.getUser_Name());
 					System.out.println("\t Employee Name :"+e.getUse_Pw());
 					}*/
-		System.out.println("Cat NAME :"+f.ListCategories());
+		System.out.println("Cat NAME :"+f.FindByName("qfqf"));
 	}
 }
