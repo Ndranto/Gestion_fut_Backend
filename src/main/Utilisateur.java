@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import model.CatalogueFut;
 import Dao.CatalogueFutDAO;
 
 
@@ -37,9 +39,9 @@ public class Utilisateur {
 			System.out.println("NAME = "+employee.getUser_Name());
 			System.out.println("PW = "+employee.getUse_Pw());/*
 			
-			 ---------------------Delete -------------------
+			 ---------------------Delete -------------------*/
 
-			Utilisteur employee =  entitymanager.find( Utilisteur.class, 3 );
+			CatalogueFut employee =  entitymanager.find( CatalogueFut.class, 3 );
 			entitymanager.remove( employee );
 			entitymanager.getTransaction( ).commit( );
 			entitymanager.close( );
@@ -74,6 +76,6 @@ public class Utilisateur {
 					System.out.println("\t  Name :"+e.getUser_Name());
 					System.out.println("\t Employee Name :"+e.getUse_Pw());
 					}*/
-		System.out.println("Cat NAME :"+f.FindByName("qfqf"));
+		
 	}
 }
