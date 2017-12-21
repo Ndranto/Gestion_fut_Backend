@@ -36,7 +36,7 @@ public class CatalogueFutService {
     private HttpServletResponse response;
 	CatalogueFut fut = new CatalogueFut();
 	CatalogueFutDAO catdao  =  new CatalogueFutDAO();;
-	private CatalogueFut Cataloguedao;
+	private CatalogueFut Catalogue;
 
     public CatalogueFutService() {
     
@@ -111,15 +111,12 @@ public class CatalogueFutService {
     @Path("/addForm")
     @Consumes("application/x-www-form-urlencoded")
     public Response addForm() throws Exception {
-        String id = request.getParameter("futId");
-        String name = request.getParameter("futNomCatalogueFut");
-        String descr = request.getParameter("futDescrCatalogueFut");
-       int idfut = Integer.parseInt(id);
-       Cataloguedao = new CatalogueFut();
-        Cataloguedao.setFutId(idfut);
-        Cataloguedao.setFutDescrCatalogueFut(descr);
-        Cataloguedao.setFutNomCatalogueFut(name);
-		return catdao.Create(Cataloguedao);
+      
+    	Catalogue = new CatalogueFut();
+    	Catalogue.setFutId((Integer.parseInt(request.getParameter("futId"))));
+    	Catalogue.setFutDescrCatalogueFut(request.getParameter("futDescrCatalogueFut"));
+    	Catalogue.setFutNomCatalogueFut(request.getParameter("futNomCatalogueFut"));
+		return catdao.Create(Catalogue);
         
       
     }
@@ -127,16 +124,13 @@ public class CatalogueFutService {
     @Path("/Update")
     @Consumes("application/x-www-form-urlencoded")
     public Response Update() throws Exception {
-        {  String id = request.getParameter("futId");
-        String name = request.getParameter("futNomCatalogueFut");
-        String descr = request.getParameter("futDescrCatalogueFut");
-       int idfut = Integer.parseInt(id);
-       Cataloguedao = new CatalogueFut();
-        Cataloguedao.setFutId(idfut);
-        Cataloguedao.setFutDescrCatalogueFut(descr);
-        Cataloguedao.setFutNomCatalogueFut(name);
+        {    
+        	Catalogue = new CatalogueFut();
+        	Catalogue.setFutId((Integer.parseInt(request.getParameter("futId"))));
+        	Catalogue.setFutDescrCatalogueFut(request.getParameter("futDescrCatalogueFut"));
+        	Catalogue.setFutNomCatalogueFut(request.getParameter("futNomCatalogueFut"));
             
-        return catdao.Update(Cataloguedao);
+            return catdao.Update(Catalogue);
         
         }
     }

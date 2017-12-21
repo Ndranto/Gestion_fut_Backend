@@ -14,7 +14,7 @@ import javax.persistence.*;
 @NamedQueries({
 @NamedQuery(name="CatalogueFut.findAll", query="SELECT c FROM CatalogueFut c"),
 @NamedQuery(name="CatalogueFut.findAllName", query="SELECT c FROM CatalogueFut c where c.futNomCatalogueFut = :NameFut"),
-@NamedQuery(name="CatalogueFut.findAllId", query="SELECT c FROM CatalogueFut c where c.futId = :idFut"),})
+@NamedQuery(name="CatalogueFut.findAllId", query="SELECT c FROM CatalogueFut c where c.futId = :futId"),})
 public class CatalogueFut implements Serializable {
 	private static final long serialVersionUID = 1L;
 
