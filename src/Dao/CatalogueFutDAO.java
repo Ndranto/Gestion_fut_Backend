@@ -84,8 +84,6 @@ public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements Gen
 	@Override
 	public Response Update(CatalogueFut Fut) {
 
-		CatalogueFut cat = new CatalogueFut();
-	
 		
 	   this.update(Fut);
 		/* EntityManagerFactory factory = getEntityManagerFactory();

@@ -9,11 +9,12 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Categorie.findAll", query="SELECT c FROM Categorie c")
+@Access(value=AccessType.FIELD)
 public class Categorie implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="cat_id")
 	private Integer catId;
 

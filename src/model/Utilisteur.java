@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 
 /**
@@ -10,24 +9,20 @@ import javax.validation.constraints.NotNull;
  * 
  */
 @Entity
-@NamedQueries({
-@NamedQuery(name="Utilisteur.findAll", query="SELECT u FROM Utilisteur u"),
-@NamedQuery(name="Utilisteur.findAllId", query="SELECT u FROM Utilisteur u where u.user_Id = :id"),})
+@NamedQuery(name="Utilisteur.findAll", query="SELECT u FROM Utilisteur u")
+@Access(value=AccessType.FIELD)
 public class Utilisteur implements Serializable {
 	private static final long serialVersionUID = 1L;
-  
-	
+
 	@Column(name="\"Use_Pw\"")
 	private String use_Pw;
+    @Id
+	@Column(name="\"User_Id\"")
+	private Integer user_Id;
 
 	@Column(name="\"User_Name\"")
 	private String user_Name;
 
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.AUTO)
-	 @Column(name="\"User_Id\"")
-	private int user_Id;
-	 
 	public Utilisteur() {
 	}
 
@@ -54,8 +49,5 @@ public class Utilisteur implements Serializable {
 	public void setUser_Name(String user_Name) {
 		this.user_Name = user_Name;
 	}
-	public String toString() {
-		return "User [id=" + user_Id + ", Name=" + user_Name + ", pw="
-		+ use_Pw + "]";
-		}
+
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -9,11 +10,12 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@NamedQuery(name="Client.findAll", query="SELECT c FROM Client c")
+@Access(value=AccessType.FIELD)
 public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="cli_id_client")
 	private Integer cliIdClient;
 
@@ -26,8 +28,14 @@ public class Client implements Serializable {
 	@Column(name="cli_solde_client")
 	private Integer cliSoldeClient;
 
-	@Column(name="ville_id_ville")
-	private Integer villeIdVille;
+	//bi-directional many-to-one association to Ville
+	@ManyToOne
+	@JoinColumn(name="ville_id_ville")
+	private Ville ville;
+
+	//bi-directional many-to-one association to Inventaire
+	@OneToMany(mappedBy="client")
+	private List<Inventaire> inventaires;
 
 	public Client() {
 	}
@@ -64,12 +72,34 @@ public class Client implements Serializable {
 		this.cliSoldeClient = cliSoldeClient;
 	}
 
-	public Integer getVilleIdVille() {
-		return this.villeIdVille;
+	public Ville getVille() {
+		return this.ville;
 	}
 
-	public void setVilleIdVille(Integer villeIdVille) {
-		this.villeIdVille = villeIdVille;
+	public void setVille(Ville ville) {
+		this.ville = ville;
+	}
+
+	public List<Inventaire> getInventaires() {
+		return this.inventaires;
+	}
+
+	public void setInventaires(List<Inventaire> inventaires) {
+		this.inventaires = inventaires;
+	}
+
+	public Inventaire addInventaire(Inventaire inventaire) {
+		getInventaires().add(inventaire);
+		inventaire.setClient(this);
+
+		return inventaire;
+	}
+
+	public Inventaire removeInventaire(Inventaire inventaire) {
+		getInventaires().remove(inventaire);
+		inventaire.setClient(null);
+
+		return inventaire;
 	}
 
 }

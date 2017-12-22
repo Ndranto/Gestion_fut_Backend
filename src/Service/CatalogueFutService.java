@@ -6,26 +6,18 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
+import javax.ws.rs.core.*;
 import Dao.CatalogueFutDAO;
-import model.Categorie;
 import model.CatalogueFut;
 
 
 @Path("/fut")
 @Stateless
 @LocalBean
-@Produces(MediaType.APPLICATION_JSON+"; charset=UTF-8")
+@Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
 @Consumes(MediaType.APPLICATION_JSON)
 public class CatalogueFutService {
 	
@@ -53,7 +45,7 @@ public class CatalogueFutService {
     
     /* find the name of product fut */
     @GET
-    @Path("/ListfutName/{NameFut}")
+    @Path("/nameFut/{NameFut}")
     public List<CatalogueFut>   ListfutName(@PathParam(value="NameFut")String Name) {
         return catdao.FindByListName(Name);
     }
@@ -62,7 +54,7 @@ public class CatalogueFutService {
     
     /* find fut by Id */
     @GET
-    @Path("/ListfutId/{IdFut}")
+    @Path("/idFut/{IdFut}")
     public List<CatalogueFut>   ListfutId(@PathParam(value="IdFut")int IdFut) {
         return catdao.FindByListId(IdFut);
     }

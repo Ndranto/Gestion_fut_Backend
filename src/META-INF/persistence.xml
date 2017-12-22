@@ -2,10 +2,22 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="Jax-rs_Gestion_Fut" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>model.Client</class>
-		<class>model.Utilisteur</class>
+		<class>model.Caracteristique</class>
 		<class>model.CatalogueFut</class>
 		<class>model.Categorie</class>
+		<class>model.Client</class>
+		<class>model.Inventaire</class>
+		<class>model.LigneInventaire</class>
+		<class>model.LigneInventairePK</class>
+		<class>model.Sequence</class>
+		<class>model.Stockage</class>
+		<class>model.Stocker</class>
+		<class>model.StockerPK</class>
+		<class>model.Transport</class>
+		<class>model.Utiliser</class>
+		<class>model.UtiliserPK</class>
+		
+		<class>model.Ville</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
                <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

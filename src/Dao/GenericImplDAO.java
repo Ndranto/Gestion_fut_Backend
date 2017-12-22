@@ -33,14 +33,14 @@ public abstract class GenericImplDAO<T> {
 		  }  
 		public  EntityManager getEntityManager()
 		{
-
-			entityManager = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut").createEntityManager();
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut");
+			entityManager = factory.createEntityManager();
 	    
 	       return entityManager;
          }
 		public  EntityManagerFactory getEntityManagerFactory()
 		{
-
+ 
 			entityManagerFactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut");
 	    
 	       return entityManagerFactory;
@@ -67,14 +67,16 @@ public abstract class GenericImplDAO<T> {
 			emfactory.close();   
        }
        public List<T> list()
-       {
-    		Query query = getEntityManager().createNamedQuery(this.QUeryName);
+       {     EntityManagerFactory factory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut");
+		     entityManager = factory.createEntityManager();
+    		Query query = entityManager.createNamedQuery(this.QUeryName);
     		List<T> list= query.getResultList();
+    		getEntityManager().close();
     		return list;
     	   
        }
        public List<T> FindName(Object value)
-       {
+       {  
     	   Query query = getEntityManager().createNamedQuery(this.QUeryName);
    		query.setParameter(this.parameter,value.toString());
    		List<T> list = query.getResultList( );
