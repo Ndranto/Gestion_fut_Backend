@@ -36,11 +36,11 @@ public class Stockage implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="ville_id_ville")
 	private Ville ville;
-
+/*
 	//bi-directional many-to-one association to Stocker
 	@OneToMany(mappedBy="stockage")
 	private List<Stocker> stockers;
-
+*/
 	public Stockage() {
 	}
 
@@ -105,7 +105,7 @@ public class Stockage implements Serializable {
 	public void setVille(Ville ville) {
 		this.ville = ville;
 	}
-
+	/*
 	public List<Stocker> getStockers() {
 		return this.stockers;
 	}
@@ -127,5 +127,5 @@ public class Stockage implements Serializable {
 
 		return stocker;
 	}
-
+*/
 }

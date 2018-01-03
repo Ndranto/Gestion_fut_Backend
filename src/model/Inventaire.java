@@ -51,15 +51,14 @@ public class Inventaire implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="stock_id")
 	private Stockage stockage;
-
 	//bi-directional many-to-one association to LigneInventaire
-	@OneToMany(mappedBy="inventaire")
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy="inventaire")
 	private List<LigneInventaire> ligneInventaires;
-
+/*
 	//bi-directional many-to-one association to Utiliser
 	@OneToMany(mappedBy="inventaire")
 	private List<Utiliser> utilisers;
-
+*/
 	public Inventaire() {
 	}
 
@@ -156,7 +155,7 @@ public class Inventaire implements Serializable {
 
 		return ligneInventaire;
 	}
-
+/*
 	public List<Utiliser> getUtilisers() {
 		return this.utilisers;
 	}
@@ -178,5 +177,6 @@ public class Inventaire implements Serializable {
 
 		return utiliser;
 	}
+	*/
 
 }

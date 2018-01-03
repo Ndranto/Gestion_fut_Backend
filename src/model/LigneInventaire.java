@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Access(value=AccessType.FIELD)
 public class LigneInventaire implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+  
 	@EmbeddedId
 	private LigneInventairePK id;
 
@@ -28,15 +28,20 @@ public class LigneInventaire implements Serializable {
 
 	//bi-directional many-to-one association to CatalogueFut
 	@ManyToOne
-	@JoinColumn(name="fut_id")
+	@JoinColumn(name="fut_id", referencedColumnName="fut_id")
 	private CatalogueFut catalogueFut;
 
 	//bi-directional many-to-one association to Inventaire
+	
 	@ManyToOne
-	@JoinColumn(name="inv_id")
+	@JoinColumn(name="inv_id" , referencedColumnName="inv_id")
 	private Inventaire inventaire;
 
 	public LigneInventaire() {
+	}
+
+	public LigneInventaire(LigneInventairePK ligneinventairePk) {
+		this.id = ligneinventairePk;
 	}
 
 	public LigneInventairePK getId() {

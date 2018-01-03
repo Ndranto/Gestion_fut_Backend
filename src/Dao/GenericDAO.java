@@ -11,6 +11,6 @@ public interface GenericDAO<T> {
      public List<T> FindByListName(String Name);
 	 public Response Create(T entite);
 	 public Response Update(T entite);
-	 public Response DeleteFuts(Object entite);
+	 public Response Delete(Object entite);
  
 }

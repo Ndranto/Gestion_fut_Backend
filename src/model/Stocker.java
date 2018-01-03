@@ -24,7 +24,7 @@ public class Stocker implements Serializable {
 
 	@Column(name="\"Nbre_Fut_Stocker\"")
 	private double nbre_Fut_Stocker;
-
+/*
 	//bi-directional many-to-one association to CatalogueFut
 	@ManyToOne
 	@JoinColumn(name="fut_id")
@@ -34,7 +34,7 @@ public class Stocker implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="stock_id")
 	private Stockage stockage;
-
+*/
 	public Stocker() {
 	}
 
@@ -69,7 +69,7 @@ public class Stocker implements Serializable {
 	public void setNbre_Fut_Stocker(double nbre_Fut_Stocker) {
 		this.nbre_Fut_Stocker = nbre_Fut_Stocker;
 	}
-
+/*
 	public CatalogueFut getCatalogueFut() {
 		return this.catalogueFut;
 	}
@@ -85,5 +85,5 @@ public class Stocker implements Serializable {
 	public void setStockage(Stockage stockage) {
 		this.stockage = stockage;
 	}
-
+*/
 }

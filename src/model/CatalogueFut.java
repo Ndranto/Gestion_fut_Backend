@@ -31,13 +31,13 @@ public class CatalogueFut implements Serializable {
 	private String futNomCatalogueFut;
 
 	//bi-directional many-to-one association to LigneInventaire
-	@OneToMany(mappedBy="catalogueFut")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="catalogueFut" )
 	private List<LigneInventaire> ligneInventaires;
-
+/*
 	//bi-directional many-to-one association to Stocker
 	@OneToMany(mappedBy="catalogueFut")
 	private List<Stocker> stockers;
-
+*/
 	public CatalogueFut() {
 	}
 
@@ -86,7 +86,7 @@ public class CatalogueFut implements Serializable {
 
 		return ligneInventaire;
 	}
-
+/*
 	public List<Stocker> getStockers() {
 		return this.stockers;
 	}
@@ -108,5 +108,5 @@ public class CatalogueFut implements Serializable {
 
 		return stocker;
 	}
-
+*/
 }

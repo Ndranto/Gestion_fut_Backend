@@ -134,6 +134,6 @@ public class CatalogueFutService {
     public  Response  Delete(@PathParam(value="IdFut")int IdFut)
     	{
     
-        return   catdao.DeleteFuts(IdFut);
+        return   catdao.Delete(IdFut);
     	}
     }

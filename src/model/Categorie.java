@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -10,6 +11,11 @@ import javax.persistence.*;
  */
 @Entity
 @Access(value=AccessType.FIELD)
+@NamedQueries({
+@NamedQuery(name="Categorie.findAll", query="SELECT c FROM Categorie c"),
+@NamedQuery(name="Categorie.findAllId", query="SELECT c FROM Categorie c where c.catId = :catId"),
+@NamedQuery(name="Categorie.findAllName", query="SELECT c FROM Categorie c where c.catFut = :catFut"),})
+
 public class Categorie implements Serializable {
 	private static final long serialVersionUID = 1L;
 

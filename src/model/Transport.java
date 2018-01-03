@@ -24,11 +24,11 @@ public class Transport implements Serializable {
 
 	@Column(name="trans_im")
 	private String transIm;
-
+/*
 	//bi-directional many-to-one association to Utiliser
 	@OneToMany(mappedBy="transport")
 	private List<Utiliser> utilisers;
-
+*/
 	public Transport() {
 	}
 
@@ -55,7 +55,7 @@ public class Transport implements Serializable {
 	public void setTransIm(String transIm) {
 		this.transIm = transIm;
 	}
-
+/*
 	public List<Utiliser> getUtilisers() {
 		return this.utilisers;
 	}
@@ -77,5 +77,5 @@ public class Transport implements Serializable {
 
 		return utiliser;
 	}
-
+*/
 }

@@ -1,7 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import org.eclipse.jdt.internal.compiler.ast.FalseLiteral;
+
 import java.util.List;
 
 
@@ -11,6 +15,10 @@ import java.util.List;
  */
 @Entity
 @Access(value=AccessType.FIELD)
+@NamedQueries({
+@NamedQuery(name="Client.findAll", query="SELECT C FROM Client C"),
+@NamedQuery(name="Client.findAllId", query="SELECT C  FROM Client C where C.cliIdClient = :cliIdClient"),
+@NamedQuery(name="Client.findAllName", query="SELECT C FROM Client C where C.cliNom = :cliNom"),})
 public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -29,14 +37,14 @@ public class Client implements Serializable {
 	private Integer cliSoldeClient;
 
 	//bi-directional many-to-one association to Ville
-	@ManyToOne
-	@JoinColumn(name="ville_id_ville")
+	@ManyToOne(optional =  false)
+	@JoinColumn(name="ville_id_ville", referencedColumnName="ville_id_ville")
 	private Ville ville;
-
+/*
 	//bi-directional many-to-one association to Inventaire
 	@OneToMany(mappedBy="client")
 	private List<Inventaire> inventaires;
-
+*/
 	public Client() {
 	}
 
@@ -71,7 +79,7 @@ public class Client implements Serializable {
 	public void setCliSoldeClient(Integer cliSoldeClient) {
 		this.cliSoldeClient = cliSoldeClient;
 	}
-
+    
 	public Ville getVille() {
 		return this.ville;
 	}
@@ -79,7 +87,7 @@ public class Client implements Serializable {
 	public void setVille(Ville ville) {
 		this.ville = ville;
 	}
-
+/*
 	public List<Inventaire> getInventaires() {
 		return this.inventaires;
 	}
@@ -101,5 +109,6 @@ public class Client implements Serializable {
 
 		return inventaire;
 	}
+	*/
 
 }

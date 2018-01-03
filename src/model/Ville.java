@@ -1,8 +1,12 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
+
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -26,15 +30,13 @@ public class Ville implements Serializable {
 
 	@Column(name="ville_name_ville")
 	private String villeNameVille;
-
-	//bi-directional many-to-one association to Client
-	@OneToMany(mappedBy="ville")
-	private List<Client> clients;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "ville")
+	private Set<Client> clients;
 
 	//bi-directional many-to-one association to Stockage
-	@OneToMany(mappedBy="ville")
-	private List<Stockage> stockages;
-
+	//@OneToMany(cascade = CascadeType.ALL, mappedBy ="" )
+	//private List<Stockage> stockages;
 	public Ville() {
 	}
 
@@ -54,11 +56,12 @@ public class Ville implements Serializable {
 		this.villeNameVille = villeNameVille;
 	}
 
-	public List<Client> getClients() {
+	@XmlTransient
+	public Set<Client> getClients() {
 		return this.clients;
 	}
 
-	public void setClients(List<Client> clients) {
+	public void setClients(Set<Client> clients) {
 		this.clients = clients;
 	}
 
@@ -68,6 +71,7 @@ public class Ville implements Serializable {
 
 		return client;
 	}
+	
 
 	public Client removeClient(Client client) {
 		getClients().remove(client);
@@ -75,7 +79,7 @@ public class Ville implements Serializable {
 
 		return client;
 	}
-
+	/*
 	public List<Stockage> getStockages() {
 		return this.stockages;
 	}
@@ -97,5 +101,5 @@ public class Ville implements Serializable {
 
 		return stockage;
 	}
-
+*/
 }

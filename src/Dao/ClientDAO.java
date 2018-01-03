@@ -2,44 +2,41 @@ package Dao;
 
 import java.util.List;
 
-import javax.persistence.Query;
 import javax.ws.rs.core.Response;
 
-import model.CatalogueFut;
-import model.Ville;
+import model.Client;
 
-public class VilleDao extends GenericImplDAO<Ville> implements GenericDAO<Ville> {
-
+public class ClientDAO  extends GenericImplDAO<Client> implements GenericDAO<Client> {
 	@Override
-	public List<Ville> getAll() {
-		this.QUeryName = "Ville.findAll";
+	public List<Client> getAll() {
+		this.QUeryName = "Client.findAll";
 		return this.list();
 		}
 
 	@Override
-	public List<Ville> FindByListId(Object ValueidFut) {
-		this.parameter ="villeIdVille";
-		this.QUeryName ="Ville.findAllId";
+	public List<Client> FindByListId(Object ValueidFut) {
+		this.parameter ="cliIdClient	";
+		this.QUeryName ="Client.findAllId";
 		return this.FindId((int) ValueidFut);
 		
 	}
 
 	@Override
-	public List<Ville> FindByListName(String Name) {
-		this.parameter = "villeNameVille";
-		this.QUeryName =  "Ville.findAllName";
+	public List<Client> FindByListName(String Name) {
+		this.parameter = "cliNom";
+		this.QUeryName =  "Client.findAllName";
 		return this.FindName(Name);
 	}
 
 	@Override
-	public Response Create(Ville entite) {
+	public Response Create(Client entite) {
 		 create(entite);
-		 String json ="le Numero"+entite.getVilleIdVille()+"est Inserer";
+		 String json ="le Numero"+entite.getCliIdClient()+"est Inserer";
 	     return  Response.status(200).type("application/json").entity(json).build();
 	}
 
 	@Override
-	public Response Update(Ville entite) {
+	public Response Update(Client entite) {
 		
 		   this.update(entite);
 			/* EntityManagerFactory factory = getEntityManagerFactory();
@@ -52,7 +49,7 @@ public class VilleDao extends GenericImplDAO<Ville> implements GenericDAO<Ville>
 				entitym.getTransaction().commit();
 				entitym.close();
 				factory.close();*/ 
-			String json ="le Numero"+entite.getVilleIdVille()+"est Modifier";
+			String json ="le Numero"+entite.getCliIdClient()+"est Modifier";
 		
 			
 		return  Response.status(200).type("application/json").entity(json).build();

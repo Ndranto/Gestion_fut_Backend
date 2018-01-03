@@ -68,14 +68,14 @@ public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements Gen
 	}
 	@Override
 	public Response Create(CatalogueFut fut)
-	{    /*EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut") ;
-	      EntityManager entity = emfactory.createEntityManager();
-	      entity.getTransaction( ).begin( );
-	      entity.persist(fut);
-	      entity.getTransaction( ).commit( );
-	      entity.close( );
-		emfactory.close( );*/
-		   create(fut);
+		{    /*EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut") ;
+		      EntityManager entity = emfactory.createEntityManager();
+		      entity.getTransaction( ).begin( );
+		      entity.persist(fut);
+		      entity.getTransaction( ).commit( );
+		      entity.close( );
+		    emfactory.close( );*/
+		    create(fut);
 			String json ="le Numero"+fut.getFutId()+"est Inserer";
 			return  Response.status(200).type("application/json").entity(json).build();
 	}
@@ -102,7 +102,7 @@ public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements Gen
 	return  Response.status(200).type("application/json").entity(json).build();}
 	
 	@Override
-	public Response DeleteFuts(Object Fut_id) {
+	public Response Delete(Object Fut_id) {
 		
 		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut") ;
 		EntityManager f =  emfactory.createEntityManager();
