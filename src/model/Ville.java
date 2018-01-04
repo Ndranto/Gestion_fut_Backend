@@ -35,8 +35,8 @@ public class Ville implements Serializable {
 	private Set<Client> clients;
 
 	//bi-directional many-to-one association to Stockage
-	//@OneToMany(cascade = CascadeType.ALL, mappedBy ="" )
-	//private List<Stockage> stockages;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy ="" )
+	private Set<Stockage> stockages;
 	public Ville() {
 	}
 
@@ -79,14 +79,16 @@ public class Ville implements Serializable {
 
 		return client;
 	}
-	/*
-	public List<Stockage> getStockages() {
+    
+	@XmlTransient
+	public Set<Stockage> getStockages() {
 		return this.stockages;
 	}
 
-	public void setStockages(List<Stockage> stockages) {
+	public void setStockages(Set<Stockage> stockages) {
 		this.stockages = stockages;
 	}
+
 
 	public Stockage addStockage(Stockage stockage) {
 		getStockages().add(stockage);
@@ -101,5 +103,5 @@ public class Ville implements Serializable {
 
 		return stockage;
 	}
-*/
+
 }

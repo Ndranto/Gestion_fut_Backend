@@ -1,8 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
-import java.util.List;
+import javax.xml.bind.annotation.XmlTransient;
+import java.util.Set;
 
 
 /**
@@ -32,12 +34,12 @@ public class CatalogueFut implements Serializable {
 
 	//bi-directional many-to-one association to LigneInventaire
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="catalogueFut" )
-	private List<LigneInventaire> ligneInventaires;
-/*
+	private Set<LigneInventaire> ligneInventaires;
+
 	//bi-directional many-to-one association to Stocker
-	@OneToMany(mappedBy="catalogueFut")
-	private List<Stocker> stockers;
-*/
+	@OneToMany(cascade = CascadeType.ALL,mappedBy="catalogueFut")
+	private Set<Stocker> stockers;
+
 	public CatalogueFut() {
 	}
 
@@ -64,15 +66,16 @@ public class CatalogueFut implements Serializable {
 	public void setFutNomCatalogueFut(String futNomCatalogueFut) {
 		this.futNomCatalogueFut = futNomCatalogueFut;
 	}
-
-	public List<LigneInventaire> getLigneInventaires() {
+    
+	@XmlTransient
+	public Set<LigneInventaire> getLigneInventaires() {
 		return this.ligneInventaires;
 	}
 
-	public void setLigneInventaires(List<LigneInventaire> ligneInventaires) {
+	public void setLigneInventaires(Set<LigneInventaire> ligneInventaires) {
 		this.ligneInventaires = ligneInventaires;
 	}
-
+	
 	public LigneInventaire addLigneInventaire(LigneInventaire ligneInventaire) {
 		getLigneInventaires().add(ligneInventaire);
 		ligneInventaire.setCatalogueFut(this);
@@ -86,12 +89,13 @@ public class CatalogueFut implements Serializable {
 
 		return ligneInventaire;
 	}
-/*
-	public List<Stocker> getStockers() {
+
+	@XmlTransient
+	public Set<Stocker> getStockers() {
 		return this.stockers;
 	}
 
-	public void setStockers(List<Stocker> stockers) {
+	public void setStockers(Set<Stocker> stockers) {
 		this.stockers = stockers;
 	}
 
@@ -108,5 +112,5 @@ public class CatalogueFut implements Serializable {
 
 		return stocker;
 	}
-*/
+
 }

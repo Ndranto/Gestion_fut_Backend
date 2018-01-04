@@ -1,8 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
-import java.util.List;
+import javax.xml.bind.annotation.XmlTransient;
+
+import java.util.Set;
 
 
 /**
@@ -11,6 +14,8 @@ import java.util.List;
  */
 @Entity
 @Access(value=AccessType.FIELD)
+@NamedQueries({
+@NamedQuery(name="Caracteristique.findAll", query="SELECT C FROM Caracteristique C"),})
 public class Caracteristique implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -23,8 +28,8 @@ public class Caracteristique implements Serializable {
 	private String caraNom;
 
 	//bi-directional many-to-one association to Inventaire
-	@OneToMany(mappedBy="caracteristique")
-	private List<Inventaire> inventaires;
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy="caracteristique")
+	private Set<Inventaire> inventaires;
 
 	public Caracteristique() {
 	}
@@ -44,16 +49,17 @@ public class Caracteristique implements Serializable {
 	public void setCaraNom(String caraNom) {
 		this.caraNom = caraNom;
 	}
-
-	public List<Inventaire> getInventaires() {
+	
+    @XmlTransient
+	public Set<Inventaire> getInventaires() {
 		return this.inventaires;
 	}
 
-	public void setInventaires(List<Inventaire> inventaires) {
+	public void setInventaires(Set<Inventaire> inventaires) {
 		this.inventaires = inventaires;
 	}
 
-	public Inventaire addInventaire(Inventaire inventaire) {
+public Inventaire addInventaire(Inventaire inventaire) {
 		getInventaires().add(inventaire);
 		inventaire.setCaracteristique(this);
 

@@ -12,7 +12,6 @@ import model.CatalogueFut;
 
 public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements GenericDAO<CatalogueFut>{
 
-	private static final int CatalogueFut = 0;
 	public ConnectionFactory daoFactory;
 	
 

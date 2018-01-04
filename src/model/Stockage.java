@@ -1,8 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
-import java.util.List;
+import javax.xml.bind.annotation.XmlTransient;
+
+import java.util.Set;
 
 
 /**
@@ -11,6 +14,10 @@ import java.util.List;
  */
 @Entity
 @Access(value=AccessType.FIELD)
+@NamedQueries({
+@NamedQuery(name="Stockage.findAll", query="SELECT S FROM Stockage S"),
+@NamedQuery(name="Stockage.findAllId", query="SELECT S FROM Stockage S where S.stockId = :stockId"),
+@NamedQuery(name="Stockage.findAllName", query="SELECT S FROM Stockage S where S.stockLieuStockage = :stockLieuStockage"),})
 public class Stockage implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -28,19 +35,33 @@ public class Stockage implements Serializable {
 	@Column(name="stock_solde")
 	private Integer stockSolde;
 
+	
 	//bi-directional many-to-one association to Inventaire
-	@OneToMany(mappedBy="stockage")
-	private List<Inventaire> inventaires;
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy="stockage")
+	private Set<Inventaire> inventaires;
 
 	//bi-directional many-to-one association to Ville
 	@ManyToOne
-	@JoinColumn(name="ville_id_ville")
+	@JoinColumn(name="ville_id_ville"  , referencedColumnName="ville_id_ville")
 	private Ville ville;
-/*
-	//bi-directional many-to-one association to Stocker
-	@OneToMany(mappedBy="stockage")
-	private List<Stocker> stockers;
-*/
+	
+    //bi-directional many-to-one association to Stocker
+	 @OneToMany(cascade = CascadeType.ALL,mappedBy="stockage")
+	 private Set<Stocker> stockers;
+	
+	 //bi-directional many-to-one association to Stocker
+     @OneToMany(cascade = CascadeType.ALL,mappedBy="stockage")
+	 private Set<Stockage_History> StockHistory;
+
+    @XmlTransient
+	public Set<Stockage_History> getStockHistory() {
+		return StockHistory;
+	}
+
+	public void setStockHistory(Set<Stockage_History> stockHistory) {
+		StockHistory = stockHistory;
+	}
+
 	public Stockage() {
 	}
 
@@ -75,12 +96,13 @@ public class Stockage implements Serializable {
 	public void setStockSolde(Integer stockSolde) {
 		this.stockSolde = stockSolde;
 	}
-
-	public List<Inventaire> getInventaires() {
+    
+	@XmlTransient
+	public Set<Inventaire> getInventaires() {
 		return this.inventaires;
 	}
 
-	public void setInventaires(List<Inventaire> inventaires) {
+	public void setInventaires(Set<Inventaire> inventaires) {
 		this.inventaires = inventaires;
 	}
 
@@ -105,12 +127,15 @@ public class Stockage implements Serializable {
 	public void setVille(Ville ville) {
 		this.ville = ville;
 	}
-	/*
-	public List<Stocker> getStockers() {
+	
+	
+	
+   @XmlTransient
+	public Set<Stocker> getStockers() {
 		return this.stockers;
 	}
 
-	public void setStockers(List<Stocker> stockers) {
+	public void setStockers(Set<Stocker> stockers) {
 		this.stockers = stockers;
 	}
 
@@ -127,5 +152,5 @@ public class Stockage implements Serializable {
 
 		return stocker;
 	}
-*/
+
 }

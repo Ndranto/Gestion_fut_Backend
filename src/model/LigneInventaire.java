@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -11,15 +12,16 @@ import javax.persistence.*;
 @Entity
 @Table(name="ligne_inventaire")
 @Access(value=AccessType.FIELD)
+@NamedQueries({
+@NamedQuery(name="LigneInvAll", query="SELECT LI FROM LigneInventaire  LI"),
+@NamedQuery(name="LigneInvId", query="SELECT LI FROM LigneInventaire LI where LI.id = :id"),
+@NamedQuery(name="LigneInvEtatFut", query="SELECT LI FROM LigneInventaire LI where LI.etat_Fut = :etat_Fut"),
+@NamedQuery(name="LigneInvQteFUt", query="SELECT LI FROM LigneInventaire LI where LI.qte_Fut_Inv = :qte_Fut_Inv"),})
 public class LigneInventaire implements Serializable {
 	private static final long serialVersionUID = 1L;
   
 	@EmbeddedId
 	private LigneInventairePK id;
-
-	@Column(name="\"cat_Id\"")
-	private Integer cat_Id;
-
 	@Column(name="\"Etat_Fut\"")
 	private Boolean etat_Fut;
 
@@ -27,14 +29,18 @@ public class LigneInventaire implements Serializable {
 	private double qte_Fut_Inv;
 
 	//bi-directional many-to-one association to CatalogueFut
-	@ManyToOne
-	@JoinColumn(name="fut_id", referencedColumnName="fut_id")
+	@JoinColumn(name="fut_id", referencedColumnName="fut_id", insertable =false , updatable = false)
+	@ManyToOne(optional = false)
 	private CatalogueFut catalogueFut;
+	
+	//bi-directional many-to-one association to CatalogueFut
+	@JoinColumn(name="cat_id", referencedColumnName="cat_id", insertable =false , updatable = false)
+	@ManyToOne (optional = false)
+	private Categorie categorie;
 
 	//bi-directional many-to-one association to Inventaire
-	
-	@ManyToOne
-	@JoinColumn(name="inv_id" , referencedColumnName="inv_id")
+	@JoinColumn(name="inv_id" , referencedColumnName="inv_id" ,insertable =false , updatable = false)
+	@ManyToOne (optional = false)
 	private Inventaire inventaire;
 
 	public LigneInventaire() {
@@ -52,13 +58,7 @@ public class LigneInventaire implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getCat_Id() {
-		return this.cat_Id;
-	}
 
-	public void setCat_Id(Integer cat_Id) {
-		this.cat_Id = cat_Id;
-	}
 
 	public Boolean getEtat_Fut() {
 		return this.etat_Fut;
@@ -90,6 +90,14 @@ public class LigneInventaire implements Serializable {
 
 	public void setInventaire(Inventaire inventaire) {
 		this.inventaire = inventaire;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 }

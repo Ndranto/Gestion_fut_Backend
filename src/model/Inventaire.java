@@ -1,9 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -11,8 +13,11 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="inventaire")
 @Access(value=AccessType.FIELD)
+@NamedQueries({
+@NamedQuery(name="Inventaire.findAll", query="SELECT i FROM Inventaire i"),
+@NamedQuery(name="Inventaire.findAllId", query="SELECT i FROM Inventaire i where i.invId = :invId"),
+@NamedQuery(name="Inventaire.findAllDate", query="SELECT i FROM Inventaire i where i.iinvDate= :iinvDate")})
 public class Inventaire implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -37,28 +42,74 @@ public class Inventaire implements Serializable {
 	@Column(name="inv_validation_inventory")
 	private Boolean invValidationInventory;
 
-	//bi-directional many-to-one association to Caracteristique
-	@ManyToOne
-	@JoinColumn(name="cara_id")
-	private Caracteristique caracteristique;
-
-	//bi-directional many-to-one association to Client
-	@ManyToOne
-	@JoinColumn(name="cli_id_client")
-	private Client client;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy ="inventaire")
+	private Set<Utiliser> utilise;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy ="inventaire")
+	private Set<LigneInventaire> LigneInventaire;
+	
 
 	//bi-directional many-to-one association to Stockage
-	@ManyToOne
-	@JoinColumn(name="stock_id")
+	@ManyToOne(optional =false)
+	@JoinColumn(name="cli_id_client",referencedColumnName="cli_id_client",insertable = false, updatable = false)
+	private Client client;
+	
+	//bi-directional many-to-one association to Stockage
+	@ManyToOne(optional =false)
+	@JoinColumn(name="stock_id",referencedColumnName="stock_id",insertable = false, updatable = false)
 	private Stockage stockage;
-	//bi-directional many-to-one association to LigneInventaire
-	@OneToMany(cascade = CascadeType.ALL ,mappedBy="inventaire")
-	private List<LigneInventaire> ligneInventaires;
-/*
-	//bi-directional many-to-one association to Utiliser
-	@OneToMany(mappedBy="inventaire")
-	private List<Utiliser> utilisers;
-*/
+	
+	//bi-directional many-to-one association to Stockage
+	@ManyToOne(optional =false)
+	@JoinColumn(name="cara_id",referencedColumnName="cara_id",insertable = false, updatable = false)
+	private Caracteristique caracteristique;
+	
+	@XmlTransient
+	public Set<LigneInventaire> getLigneInventaire() {
+		return LigneInventaire;
+	}
+
+	public void setLigneInventaire(Set<LigneInventaire> ligneInventaire) {
+		LigneInventaire = ligneInventaire;
+	}
+
+	@XmlTransient
+	public Set<Utiliser> getUtilise() {
+		return utilise;
+	}
+
+	public void setUtilise(Set<Utiliser> utilise) {
+		this.utilise = utilise;
+	}
+	
+	
+	public Client getClient() {
+		return client;
+	}
+    
+	public void setClient(Client client) {
+		this.client = client;
+	}
+	
+	
+	public Stockage getStockage() {
+		return stockage;
+	}
+
+	public void setStockage(Stockage stockage) {
+		this.stockage = stockage;
+	}
+	
+	
+	public Caracteristique getCaracteristique() {
+		return caracteristique;
+	}
+
+	public void setCaracteristique(Caracteristique caracteristique) {
+		this.caracteristique = caracteristique;
+	}
+
 	public Inventaire() {
 	}
 
@@ -109,74 +160,5 @@ public class Inventaire implements Serializable {
 	public void setInvValidationInventory(Boolean invValidationInventory) {
 		this.invValidationInventory = invValidationInventory;
 	}
-
-	public Caracteristique getCaracteristique() {
-		return this.caracteristique;
-	}
-
-	public void setCaracteristique(Caracteristique caracteristique) {
-		this.caracteristique = caracteristique;
-	}
-
-	public Client getClient() {
-		return this.client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public Stockage getStockage() {
-		return this.stockage;
-	}
-
-	public void setStockage(Stockage stockage) {
-		this.stockage = stockage;
-	}
-
-	public List<LigneInventaire> getLigneInventaires() {
-		return this.ligneInventaires;
-	}
-
-	public void setLigneInventaires(List<LigneInventaire> ligneInventaires) {
-		this.ligneInventaires = ligneInventaires;
-	}
-
-	public LigneInventaire addLigneInventaire(LigneInventaire ligneInventaire) {
-		getLigneInventaires().add(ligneInventaire);
-		ligneInventaire.setInventaire(this);
-
-		return ligneInventaire;
-	}
-
-	public LigneInventaire removeLigneInventaire(LigneInventaire ligneInventaire) {
-		getLigneInventaires().remove(ligneInventaire);
-		ligneInventaire.setInventaire(null);
-
-		return ligneInventaire;
-	}
-/*
-	public List<Utiliser> getUtilisers() {
-		return this.utilisers;
-	}
-
-	public void setUtilisers(List<Utiliser> utilisers) {
-		this.utilisers = utilisers;
-	}
-
-	public Utiliser addUtiliser(Utiliser utiliser) {
-		getUtilisers().add(utiliser);
-		utiliser.setInventaire(this);
-
-		return utiliser;
-	}
-
-	public Utiliser removeUtiliser(Utiliser utiliser) {
-		getUtilisers().remove(utiliser);
-		utiliser.setInventaire(null);
-
-		return utiliser;
-	}
-	*/
 
 }

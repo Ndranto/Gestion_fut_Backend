@@ -1,8 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
-import java.util.List;
+import javax.xml.bind.annotation.XmlTransient;
+import java.util.Set;
 
 
 /**
@@ -11,6 +13,11 @@ import java.util.List;
  */
 @Entity
 @Access(value=AccessType.FIELD)
+@NamedQueries({
+@NamedQuery(name="TransportAll", query="SELECT T FROM Transport  T"),
+@NamedQuery(name="TransportAllId", query="SELECT T FROM Transport T where T.transId = :transId"),
+@NamedQuery(name="TransportCapacite", query="SELECT T FROM Transport T where T.transCapacite = :transCapacite"),
+@NamedQuery(name="TransportMatricule", query="SELECT T FROM Transport T where T.transIm = :transIm"),})
 public class Transport implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -24,11 +31,11 @@ public class Transport implements Serializable {
 
 	@Column(name="trans_im")
 	private String transIm;
-/*
-	//bi-directional many-to-one association to Utiliser
-	@OneToMany(mappedBy="transport")
-	private List<Utiliser> utilisers;
-*/
+	
+	//bi-directional many-to-one association to Utilisers
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy="transport")
+	private Set<Utiliser> utilisers;
+
 	public Transport() {
 	}
 
@@ -52,30 +59,20 @@ public class Transport implements Serializable {
 		return this.transIm;
 	}
 
+
+
 	public void setTransIm(String transIm) {
 		this.transIm = transIm;
 	}
-/*
-	public List<Utiliser> getUtilisers() {
+
+	@XmlTransient
+	public Set<Utiliser> getUtilisers() {
 		return this.utilisers;
 	}
 
-	public void setUtilisers(List<Utiliser> utilisers) {
+	public void setUtilisers(Set<Utiliser> utilisers) {
 		this.utilisers = utilisers;
 	}
 
-	public Utiliser addUtiliser(Utiliser utiliser) {
-		getUtilisers().add(utiliser);
-		utiliser.setTransport(this);
 
-		return utiliser;
-	}
-
-	public Utiliser removeUtiliser(Utiliser utiliser) {
-		getUtilisers().remove(utiliser);
-		utiliser.setTransport(null);
-
-		return utiliser;
-	}
-*/
 }

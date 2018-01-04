@@ -10,7 +10,7 @@ public class LigneInventaireDAO extends GenericImplDAO<LigneInventaire> implemen
 
 	@Override
 	public List<LigneInventaire> getAll() {
-		this.QUeryName = "CatalogueFut.findAll";
+		this.QUeryName = "LigneInvAll";
 		return this.list();
 	}
 

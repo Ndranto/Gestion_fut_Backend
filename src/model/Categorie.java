@@ -1,8 +1,10 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 /**
@@ -23,11 +25,25 @@ public class Categorie implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="cat_id")
 	private Integer catId;
+	//bi-directional many-to-one association to LigneInventaire
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="categorie" )
+	private Set<LigneInventaire> ligneInventaires;
+
+
 
 	@Column(name="cat_fut")
 	private String catFut;
 
 	public Categorie() {
+	}
+
+	@XmlTransient
+	public Set<LigneInventaire> getLigneInventaires() {
+		return ligneInventaires;
+	}
+
+	public void setLigneInventaires(Set<LigneInventaire> ligneInventaires) {
+		this.ligneInventaires = ligneInventaires;
 	}
 
 	public Integer getCatId() {

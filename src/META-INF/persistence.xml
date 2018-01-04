@@ -9,7 +9,6 @@
 		<class>model.Inventaire</class>
 		<class>model.LigneInventaire</class>
 		<class>model.LigneInventairePK</class>
-		<class>model.Sequence</class>
 		<class>model.Stockage</class>
 		<class>model.Stocker</class>
 		<class>model.StockerPK</class>
@@ -17,6 +16,8 @@
 		<class>model.UtiliserPK</class>
 		
 		<class>model.Ville</class>
+		<class>model.Utiliser</class>
+		<class>model.Stockage_History</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
                <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

@@ -2,10 +2,7 @@ package Dao;
 
 import java.util.List;
 
-import javax.persistence.Query;
 import javax.ws.rs.core.Response;
-
-import model.CatalogueFut;
 import model.Ville;
 
 public class VilleDao extends GenericImplDAO<Ville> implements GenericDAO<Ville> {

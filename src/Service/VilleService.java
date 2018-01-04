@@ -8,11 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.sun.research.ws.wadl.Request;
-
 import Dao.VilleDao;
-import model.CatalogueFut;
 import model.Ville;
 
 @Path("/Ville")

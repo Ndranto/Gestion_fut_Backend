@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -10,6 +11,11 @@ import javax.persistence.*;
  */
 @Entity
 @Access(value=AccessType.FIELD)
+@NamedQueries({
+@NamedQuery(name="Stocker.findAll", query="SELECT S FROM Stocker S"),
+@NamedQuery(name="Stocker.findAllId", query="SELECT S FROM Stocker S where S.id.stockId = :stockId"),
+@NamedQuery(name="Stocker.findAllName", query="SELECT S FROM Stocker S where S.nbre_Fut_Stocker = :nbre_Fut_Stocker"),})
+
 public class Stocker implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -24,17 +30,17 @@ public class Stocker implements Serializable {
 
 	@Column(name="\"Nbre_Fut_Stocker\"")
 	private double nbre_Fut_Stocker;
-/*
+
 	//bi-directional many-to-one association to CatalogueFut
-	@ManyToOne
-	@JoinColumn(name="fut_id")
+	@ManyToOne(optional =false)
+	@JoinColumn(name="fut_id", referencedColumnName="fut_id",insertable = false, updatable = false)
 	private CatalogueFut catalogueFut;
 
 	//bi-directional many-to-one association to Stockage
-	@ManyToOne
-	@JoinColumn(name="stock_id")
+	@ManyToOne(optional =false)
+	@JoinColumn(name="stock_id",referencedColumnName="stock_id",insertable = false, updatable = false)
 	private Stockage stockage;
-*/
+
 	public Stocker() {
 	}
 
@@ -69,7 +75,7 @@ public class Stocker implements Serializable {
 	public void setNbre_Fut_Stocker(double nbre_Fut_Stocker) {
 		this.nbre_Fut_Stocker = nbre_Fut_Stocker;
 	}
-/*
+
 	public CatalogueFut getCatalogueFut() {
 		return this.catalogueFut;
 	}
@@ -85,5 +91,5 @@ public class Stocker implements Serializable {
 	public void setStockage(Stockage stockage) {
 		this.stockage = stockage;
 	}
-*/
+
 }

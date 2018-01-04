@@ -2,9 +2,6 @@ package Dao;
 
 import java.util.List;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.ws.rs.core.Response;
 
 import model.Categorie;

@@ -3,10 +3,9 @@ package model;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 
-import org.eclipse.jdt.internal.compiler.ast.FalseLiteral;
-
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -40,11 +39,11 @@ public class Client implements Serializable {
 	@ManyToOne(optional =  false)
 	@JoinColumn(name="ville_id_ville", referencedColumnName="ville_id_ville")
 	private Ville ville;
-/*
+
 	//bi-directional many-to-one association to Inventaire
-	@OneToMany(mappedBy="client")
-	private List<Inventaire> inventaires;
-*/
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy="client")
+	private Set<Inventaire> inventaires;
+
 	public Client() {
 	}
 
@@ -87,12 +86,12 @@ public class Client implements Serializable {
 	public void setVille(Ville ville) {
 		this.ville = ville;
 	}
-/*
-	public List<Inventaire> getInventaires() {
+  @XmlTransient
+	public Set<Inventaire> getInventaires() {
 		return this.inventaires;
 	}
 
-	public void setInventaires(List<Inventaire> inventaires) {
+	public void setInventaires(Set<Inventaire> inventaires) {
 		this.inventaires = inventaires;
 	}
 
@@ -109,6 +108,6 @@ public class Client implements Serializable {
 
 		return inventaire;
 	}
-	*/
+	
 
 }

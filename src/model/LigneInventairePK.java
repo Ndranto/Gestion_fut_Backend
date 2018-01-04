@@ -17,6 +17,8 @@ public class LigneInventairePK implements Serializable {
 
 	@Column(name="fut_id", insertable=false, updatable=false)
 	private Integer futId;
+	@Column(name="cat_Id", insertable=false, updatable=false)
+	private Integer catId;
 
 	public LigneInventairePK() {
 	}
@@ -32,6 +34,12 @@ public class LigneInventairePK implements Serializable {
 	public void setFutId(Integer futId) {
 		this.futId = futId;
 	}
+	public Integer getCatId() {
+		return this.catId;
+	}
+	public void setCatId(Integer CatId) {
+		this.catId = CatId;
+	}
 
 	public boolean equals(Object other) {
 		if (this == other) {
@@ -43,7 +51,8 @@ public class LigneInventairePK implements Serializable {
 		LigneInventairePK castOther = (LigneInventairePK)other;
 		return 
 			this.invId.equals(castOther.invId)
-			&& this.futId.equals(castOther.futId);
+			&& this.futId.equals(castOther.futId)
+			&& this.catId.equals(castOther.catId);
 	}
 
 	public int hashCode() {
@@ -51,7 +60,7 @@ public class LigneInventairePK implements Serializable {
 		int hash = 17;
 		hash = hash * prime + this.invId.hashCode();
 		hash = hash * prime + this.futId.hashCode();
-		
+		hash = hash * prime + this.catId.hashCode();
 		return hash;
 	}
 }
