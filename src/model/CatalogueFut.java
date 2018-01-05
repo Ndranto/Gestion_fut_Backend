@@ -36,10 +36,10 @@ public class CatalogueFut implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="catalogueFut" )
 	private Set<LigneInventaire> ligneInventaires;
 
-	//bi-directional many-to-one association to Stocker
+	/*//bi-directional many-to-one association to Stocker
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="catalogueFut")
 	private Set<Stocker> stockers;
-
+    */
 	public CatalogueFut() {
 	}
 
@@ -90,7 +90,7 @@ public class CatalogueFut implements Serializable {
 		return ligneInventaire;
 	}
 
-	@XmlTransient
+	/*@XmlTransient
 	public Set<Stocker> getStockers() {
 		return this.stockers;
 	}
@@ -112,5 +112,5 @@ public class CatalogueFut implements Serializable {
 
 		return stocker;
 	}
-
+*/
 }

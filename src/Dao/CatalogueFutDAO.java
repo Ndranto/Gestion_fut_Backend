@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.ws.rs.core.Response;
+
 import model.CatalogueFut;
 
 
@@ -30,7 +31,8 @@ public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements Gen
 	/*List by Id fut*/
 	@Override
 	public List<CatalogueFut> FindByListId(Object ValueidFut) {
-		this.parameter ="futId";
+		this.parameter = new String[1];
+		this.parameter[0]="futId";
 		this.QUeryName ="CatalogueFut.findAllId";
 		return this.FindId((int) ValueidFut);
 	}
@@ -45,7 +47,8 @@ public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements Gen
 	/*List by name*/
 	@Override
 	public List<CatalogueFut> FindByListName(String Name) {
-		this.parameter = "NameFut";
+		this.parameter = new String[1];
+		this.parameter[0] = "NameFut";
 		this.QUeryName =  "CatalogueFut.findAllName";
 		
 		return this.FindName(Name);

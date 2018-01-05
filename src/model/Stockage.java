@@ -38,7 +38,7 @@ public class Stockage implements Serializable {
 	
 	//bi-directional many-to-one association to Inventaire
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy="stockage")
-	private Set<Inventaire> inventaires;
+	private Set<LigneInventaire> inventaires;
 
 	//bi-directional many-to-one association to Ville
 	@ManyToOne
@@ -47,11 +47,12 @@ public class Stockage implements Serializable {
 	
     //bi-directional many-to-one association to Stocker
 	 @OneToMany(cascade = CascadeType.ALL,mappedBy="stockage")
-	 private Set<Stocker> stockers;
+	 private Set<LigneInventaire> stockers;
 	
 	 //bi-directional many-to-one association to Stocker
      @OneToMany(cascade = CascadeType.ALL,mappedBy="stockage")
 	 private Set<Stockage_History> StockHistory;
+	 
 
     @XmlTransient
 	public Set<Stockage_History> getStockHistory() {
@@ -98,22 +99,22 @@ public class Stockage implements Serializable {
 	}
     
 	@XmlTransient
-	public Set<Inventaire> getInventaires() {
+	public Set<LigneInventaire> getInventaires() {
 		return this.inventaires;
 	}
 
-	public void setInventaires(Set<Inventaire> inventaires) {
+	public void setInventaires(Set<LigneInventaire> inventaires) {
 		this.inventaires = inventaires;
 	}
 
-	public Inventaire addInventaire(Inventaire inventaire) {
+	public LigneInventaire addInventaire(LigneInventaire inventaire) {
 		getInventaires().add(inventaire);
 		inventaire.setStockage(this);
 
 		return inventaire;
 	}
 
-	public Inventaire removeInventaire(Inventaire inventaire) {
+	public LigneInventaire removeInventaire(LigneInventaire inventaire) {
 		getInventaires().remove(inventaire);
 		inventaire.setStockage(null);
 
@@ -131,22 +132,22 @@ public class Stockage implements Serializable {
 	
 	
    @XmlTransient
-	public Set<Stocker> getStockers() {
+	public Set<LigneInventaire> getStockers() {
 		return this.stockers;
 	}
 
-	public void setStockers(Set<Stocker> stockers) {
+	public void setStockers(Set<LigneInventaire> stockers) {
 		this.stockers = stockers;
 	}
 
-	public Stocker addStocker(Stocker stocker) {
+	public LigneInventaire addStocker(LigneInventaire stocker) {
 		getStockers().add(stocker);
 		stocker.setStockage(this);
 
 		return stocker;
 	}
 
-	public Stocker removeStocker(Stocker stocker) {
+	public LigneInventaire removeStocker(LigneInventaire stocker) {
 		getStockers().remove(stocker);
 		stocker.setStockage(null);
 

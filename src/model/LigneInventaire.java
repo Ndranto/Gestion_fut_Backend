@@ -14,17 +14,21 @@ import javax.persistence.*;
 @Access(value=AccessType.FIELD)
 @NamedQueries({
 @NamedQuery(name="LigneInvAll", query="SELECT LI FROM LigneInventaire  LI"),
-@NamedQuery(name="LigneInvId", query="SELECT LI FROM LigneInventaire LI where LI.id = :id"),
-@NamedQuery(name="LigneInvEtatFut", query="SELECT LI FROM LigneInventaire LI where LI.etat_Fut = :etat_Fut"),
+@NamedQuery(name="LigneInvId", query="SELECT LI FROM LigneInventaire LI where LI.idLi = :idLi"),
+@NamedQuery(name="LigneInvEtatFut", query="SELECT LI FROM LigneInventaire LI where LI.etatFut = :etatFut"),
+@NamedQuery(name="LigneInvSituation",query="SELECT LI FROM LigneInventaire LI where LI.inventaire.invType= :invType"),
 @NamedQuery(name="LigneInvQteFUt", query="SELECT LI FROM LigneInventaire LI where LI.qte_Fut_Inv = :qte_Fut_Inv"),})
 public class LigneInventaire implements Serializable {
 	private static final long serialVersionUID = 1L;
   
-	@EmbeddedId
-	private LigneInventairePK id;
-	@Column(name="\"Etat_Fut\"")
-	private Boolean etat_Fut;
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id_li")
+	private Integer idLi;
+	
+	@Column(name="\"etat_Fut\"")
+	private boolean etatFut;
+     
 	@Column(name="\"Qte_Fut_Inv\"")
 	private double qte_Fut_Inv;
 
@@ -42,30 +46,21 @@ public class LigneInventaire implements Serializable {
 	@JoinColumn(name="inv_id" , referencedColumnName="inv_id" ,insertable =false , updatable = false)
 	@ManyToOne (optional = false)
 	private Inventaire inventaire;
+	//bi-directional many-to-one association to Inventaire
+	@JoinColumn(name="stock_id" , referencedColumnName="stock_id" ,insertable =false , updatable = false)
+	@ManyToOne (optional = false)
+	private Stockage stockage;
 
 	public LigneInventaire() {
 	}
 
-	public LigneInventaire(LigneInventairePK ligneinventairePk) {
-		this.id = ligneinventairePk;
+
+	public boolean getEtat_Fut() {
+		return this.etatFut;
 	}
 
-	public LigneInventairePK getId() {
-		return this.id;
-	}
-
-	public void setId(LigneInventairePK id) {
-		this.id = id;
-	}
-
-
-
-	public Boolean getEtat_Fut() {
-		return this.etat_Fut;
-	}
-
-	public void setEtat_Fut(Boolean etat_Fut) {
-		this.etat_Fut = etat_Fut;
+	public void setEtat_Fut(boolean etat_Fut) {
+		this.etatFut = etat_Fut;
 	}
 
 	public double getQte_Fut_Inv() {
@@ -99,5 +94,27 @@ public class LigneInventaire implements Serializable {
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
+
+
+	public Integer getIdLi() {
+		return idLi;
+	}
+
+
+	public void setIdLi(Integer idLi) {
+		this.idLi = idLi;
+	}
+
+
+	public Stockage getStockage() {
+		return stockage;
+	}
+
+
+	public void setStockage(Stockage stockage) {
+		this.stockage = stockage;
+	}
+	
+	
 
 }

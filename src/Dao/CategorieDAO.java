@@ -20,14 +20,16 @@ public class CategorieDAO extends GenericImplDAO<Categorie> implements GenericDA
 	
 	@Override
 	public List<Categorie> FindByListId(Object i) {
-		this.parameter ="catId";
+		this.parameter = new String[1];
+		this.parameter[0] ="catId";
 		this.QUeryName ="Categorie.findAllId";
 		return this.FindId(i);
 	}
 
 	@Override
 	public List<Categorie> FindByListName(String Name) {
-		this.parameter ="catFut";
+		this.parameter = new String[1];
+		this.parameter[0] ="catFut";
 		this.QUeryName ="Categorie.findAllName";
 		return this.FindName(Name);
 	}

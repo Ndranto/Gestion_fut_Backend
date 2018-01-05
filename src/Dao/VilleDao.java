@@ -15,7 +15,7 @@ public class VilleDao extends GenericImplDAO<Ville> implements GenericDAO<Ville>
 
 	@Override
 	public List<Ville> FindByListId(Object ValueidFut) {
-		this.parameter ="villeIdVille";
+		this.parameter[1]="villeIdVille";
 		this.QUeryName ="Ville.findAllId";
 		return this.FindId((int) ValueidFut);
 		
@@ -23,7 +23,7 @@ public class VilleDao extends GenericImplDAO<Ville> implements GenericDAO<Ville>
 
 	@Override
 	public List<Ville> FindByListName(String Name) {
-		this.parameter = "villeNameVille";
+		this.parameter[1] = "villeNameVille";
 		this.QUeryName =  "Ville.findAllName";
 		return this.FindName(Name);
 	}

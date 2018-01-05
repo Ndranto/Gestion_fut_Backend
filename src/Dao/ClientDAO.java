@@ -15,7 +15,8 @@ public class ClientDAO  extends GenericImplDAO<Client> implements GenericDAO<Cli
 
 	@Override
 	public List<Client> FindByListId(Object ValueidFut) {
-		this.parameter ="cliIdClient	";
+		this.parameter = new String[1];
+		this.parameter[0] ="cliIdClient	";
 		this.QUeryName ="Client.findAllId";
 		return this.FindId((int) ValueidFut);
 		
@@ -23,7 +24,8 @@ public class ClientDAO  extends GenericImplDAO<Client> implements GenericDAO<Cli
 
 	@Override
 	public List<Client> FindByListName(String Name) {
-		this.parameter = "cliNom";
+		this.parameter = new String[1];
+		this.parameter[0] = "cliNom";
 		this.QUeryName =  "Client.findAllName";
 		return this.FindName(Name);
 	}

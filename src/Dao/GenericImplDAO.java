@@ -11,7 +11,7 @@ public abstract class GenericImplDAO<T> {
 	protected Class<T> EntityClass;
 	protected EntityManager entityManager;
 	protected EntityManagerFactory entityManagerFactory;
-	protected String parameter;
+	protected String[] parameter;
 	protected Object id;
 	protected String  persistence_Unit;
 	protected String QUeryName;
@@ -75,15 +75,28 @@ public abstract class GenericImplDAO<T> {
        public List<T> FindName(Object value)
        {  
     	   Query query = getEntityManager().createNamedQuery(this.QUeryName);
-   		query.setParameter(this.parameter,value.toString());
+   		query.setParameter(this.parameter[0],value.toString());
    		List<T> list = query.getResultList( );
    		getEntityManagerFactory().close();
    		return list;
        }
+       public List<T> FindJoint(Object[] value)
+       {  
+    Query query = getEntityManager().createNamedQuery(this.QUeryName);
+	    	for (int i = 0; i < parameter.length; i++)
+	    	{
+	    		   query.setParameter(this.parameter[i],Boolean.getBoolean(value[i].toString()));
+		          	
+	    	}
+	   		List<T> list = query.getResultList( );
+	   		getEntityManagerFactory().close();
+	   		return list;
+       }
        
        public List<T> FindId(Object valueIdFut)
-       {  Query query = getEntityManager().createNamedQuery(this.QUeryName);
-		query.setParameter(this.parameter.toString(),valueIdFut);
+       {  
+  Query query = getEntityManager().createNamedQuery(this.QUeryName);
+		query.setParameter(this.parameter[0],valueIdFut);
 		List<T> list = query.getResultList( );
 		getEntityManagerFactory().close();
 		return list;

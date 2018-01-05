@@ -37,10 +37,10 @@ public class Inventaire implements Serializable {
 	private Integer invQte;
 
 	@Column(name="inv_type")
-	private String invType;
+	private Boolean invType;
 
 	@Column(name="inv_validation_inventory")
-	private Boolean invValidationInventory;
+	private boolean invValidationInventory;
 
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy ="inventaire")
@@ -54,11 +54,6 @@ public class Inventaire implements Serializable {
 	@ManyToOne(optional =false)
 	@JoinColumn(name="cli_id_client",referencedColumnName="cli_id_client",insertable = false, updatable = false)
 	private Client client;
-	
-	//bi-directional many-to-one association to Stockage
-	@ManyToOne(optional =false)
-	@JoinColumn(name="stock_id",referencedColumnName="stock_id",insertable = false, updatable = false)
-	private Stockage stockage;
 	
 	//bi-directional many-to-one association to Stockage
 	@ManyToOne(optional =false)
@@ -92,14 +87,6 @@ public class Inventaire implements Serializable {
 		this.client = client;
 	}
 	
-	
-	public Stockage getStockage() {
-		return stockage;
-	}
-
-	public void setStockage(Stockage stockage) {
-		this.stockage = stockage;
-	}
 	
 	
 	public Caracteristique getCaracteristique() {
@@ -145,11 +132,11 @@ public class Inventaire implements Serializable {
 		this.invQte = invQte;
 	}
 
-	public String getInvType() {
+	public boolean getInvType() {
 		return this.invType;
 	}
 
-	public void setInvType(String invType) {
+	public void setInvType(boolean invType) {
 		this.invType = invType;
 	}
 
