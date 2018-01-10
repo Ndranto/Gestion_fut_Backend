@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+
 import Dao.CatalogueFutDAO;
 import model.CatalogueFut;
 
 
 @Path("/fut")
 @Stateless
-@LocalBean
 @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
 @Consumes(MediaType.APPLICATION_JSON)
 public class CatalogueFutService {
@@ -39,8 +39,17 @@ public class CatalogueFutService {
 	/* List of product fut */
     @GET
     @Path("/Listfut")
-    public List<CatalogueFut>   ListFut() {
-        return catdao.getAll();
+    public Response  ListFut() {
+       
+        return  Response
+       		    .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .entity(catdao.getAll())
+                .build();
     }
     
     /* find the name of product fut */
@@ -48,6 +57,7 @@ public class CatalogueFutService {
     @Path("/nameFut/{NameFut}")
     public List<CatalogueFut>   ListfutName(@PathParam(value="NameFut")String Name) {
         return catdao.FindByListName(Name);
+        
     }
     
     
@@ -55,8 +65,17 @@ public class CatalogueFutService {
     /* find fut by Id */
     @GET
     @Path("/idFut/{IdFut}")
-    public List<CatalogueFut>   ListfutId(@PathParam(value="IdFut")int IdFut) {
-        return catdao.FindByListId(IdFut);
+    public Response ListfutId(@PathParam(value="IdFut")int IdFut) {
+      
+      return  Response
+		 .status(200)
+         .header("Access-Control-Allow-Origin", "*")
+         .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+         .header("Access-Control-Allow-Credentials", "true")
+         .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+         .header("Access-Control-Max-Age", "1209600")
+         .entity(catdao.FindByListId(IdFut))
+         .build();
     }
     
     @GET
@@ -136,4 +155,40 @@ public class CatalogueFutService {
     
         return   catdao.Delete(IdFut);
     	}
+ 
+    
+    
+    
+    @GET
+    @Path("/string")
+    public Response  getstring()
+    	{
+    	String json ="Succes";
+    	  return Response
+         		 .status(200)
+  	            .header("Access-Control-Allow-Origin", "*")
+  	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+  	            .header("Access-Control-Allow-Credentials", "true")
+  	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+  	            .header("Access-Control-Max-Age", "1209600")
+                 .entity("getUser() user-agent: " + json)
+                 .build();
+    	}
+    
+    																									
+    @GET
+    public Response getUser(@Context HttpHeaders headers){
+    	
+        String userAgent = headers.getRequestHeader("user-agent").get(0);
+
+        return Response
+        		 .status(200)
+ 	            .header("Access-Control-Allow-Origin", "*")
+ 	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+ 	            .header("Access-Control-Allow-Credentials", "true")
+ 	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+ 	            .header("Access-Control-Max-Age", "1209600")
+                .entity("getUser() user-agent: " + userAgent)
+                .build();
+    }
     }
