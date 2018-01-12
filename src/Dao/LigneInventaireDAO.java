@@ -23,7 +23,6 @@ public class LigneInventaireDAO extends GenericImplDAO<LigneInventaire> implemen
 	
 	public List<LigneInventaire> ListFutPleinSortie(Object[] i) {
 		this.parameter = new String[2];
-	
 		this.parameter[0] = "invType";
 		this.QUeryName = "LigneInvSituation";
 		return FindJoint(i) ;

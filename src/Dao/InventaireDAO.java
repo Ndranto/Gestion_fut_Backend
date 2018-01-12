@@ -10,7 +10,7 @@ public class InventaireDAO  extends GenericImplDAO<Inventaire> implements Generi
 
 	@Override
 	public List<Inventaire> getAll() {
-		this.QUeryName = "Inventaire.findAll";
+		this.QUeryName = "situationInventaire";
 		return this.list();
 	}
 

@@ -12,6 +12,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import model.Stockage;
 import Dao.StockageDAO;
 
@@ -36,8 +38,18 @@ public class StockageService {
 	/* List of product fut */
     @GET
     @Path("/ListStockage")
-    public List<Stockage>   ListStockage() {
-        return stockagedao.getAll();
+    public Response  ListStockage() {
+        
+        
+        return  Response
+       		    .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .entity(stockagedao.getAll())
+                .build();
     }
 
 }

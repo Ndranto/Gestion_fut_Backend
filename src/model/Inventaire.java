@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -17,7 +18,8 @@ import java.util.Set;
 @NamedQueries({
 @NamedQuery(name="Inventaire.findAll", query="SELECT i FROM Inventaire i"),
 @NamedQuery(name="Inventaire.findAllId", query="SELECT i FROM Inventaire i where i.invId = :invId"),
-@NamedQuery(name="Inventaire.findAllDate", query="SELECT i FROM Inventaire i where i.iinvDate= :iinvDate")})
+@NamedQuery(name="Inventaire.findAllDate", query="SELECT i FROM Inventaire i where i.iinvDate= :iinvDate"),
+@NamedQuery(name = "situationInventaire",query="SELECT i from Inventaire i LEFT JOIN  LigneInventaire LigneInventaire where  LigneInventaire.etatFut = "+false+" and  YEAR (i.iinvDate) = 2017")})
 public class Inventaire implements Serializable {
 	private static final long serialVersionUID = 1L;
 

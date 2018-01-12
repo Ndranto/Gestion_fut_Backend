@@ -17,7 +17,8 @@ import javax.persistence.*;
 @NamedQuery(name="LigneInvId", query="SELECT LI FROM LigneInventaire LI where LI.idLi = :idLi"),
 @NamedQuery(name="LigneInvEtatFut", query="SELECT LI FROM LigneInventaire LI where LI.etatFut = :etatFut"),
 @NamedQuery(name="LigneInvSituation",query="SELECT LI FROM LigneInventaire LI where LI.inventaire.invType= :invType"),
-@NamedQuery(name="LigneInvQteFUt", query="SELECT LI FROM LigneInventaire LI where LI.qte_Fut_Inv = :qte_Fut_Inv"),})
+@NamedQuery(name="LigneInvQteFUt", query="SELECT LI FROM LigneInventaire LI where LI.qte_Fut_Inv = :qte_Fut_Inv"),
+})
 public class LigneInventaire implements Serializable {
 	private static final long serialVersionUID = 1L;
   
