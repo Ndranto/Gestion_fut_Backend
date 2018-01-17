@@ -27,7 +27,7 @@ public class Categorie implements Serializable {
 	private Integer catId;
 	//bi-directional many-to-one association to LigneInventaire
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="categorie" )
-	private Set<LigneInventaire> ligneInventaires;
+	private Set<Categoriser> Categoriser;
 
 
 
@@ -38,12 +38,12 @@ public class Categorie implements Serializable {
 	}
 
 	@XmlTransient
-	public Set<LigneInventaire> getLigneInventaires() {
-		return ligneInventaires;
+	public Set<Categoriser> getCategoriser() {
+		return Categoriser;
 	}
 
-	public void setLigneInventaires(Set<LigneInventaire> ligneInventaires) {
-		this.ligneInventaires = ligneInventaires;
+	public void setCategoriser(Set<Categoriser> Categoriser) {
+		this.Categoriser = Categoriser;
 	}
 
 	public Integer getCatId() {

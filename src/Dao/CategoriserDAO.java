@@ -3,37 +3,36 @@ package Dao;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
+import model.Categoriser;
 
-import model.Inventaire;
-
-public class InventaireDAO  extends GenericImplDAO<Inventaire> implements GenericDAO<Inventaire>{
+public class CategoriserDAO extends GenericImplDAO<Categoriser> implements GenericDAO<Categoriser>  {
 
 	@Override
-	public List<Inventaire> getAll() {
-		this.QUeryName = "Inventaire.findAll";
+	public List<Categoriser> getAll() {
+		this.QUeryName ="Categoriser.findAll";
 		return this.list();
 	}
 
 	@Override
-	public List<Inventaire> FindByListId(Object i) {
+	public List<Categoriser> FindByListId(Object i) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Inventaire> FindByListName(String Name) {
+	public List<Categoriser> FindByListName(String Name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Response Create(Inventaire entite) {
+	public Response Create(Categoriser entite) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Response Update(Inventaire entite) {
+	public Response Update(Categoriser entite) {
 		// TODO Auto-generated method stub
 		return null;
 	}

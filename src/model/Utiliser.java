@@ -22,7 +22,7 @@ public class Utiliser implements Serializable {
 
 	@Column(name="nombre_camion_utilise")
 	private Integer nombreCamionUtilise;
-	
+/*	
 	//bi-directional many-to-one association to Ville
 	@JoinColumn(name="trans_id", referencedColumnName="trans_id", insertable = false, updatable = false)
 	@ManyToOne(optional =  false)
@@ -68,7 +68,7 @@ public class Utiliser implements Serializable {
 		this.inventaire = inventaire;
 	}
 
-
+*/
 
 
 }

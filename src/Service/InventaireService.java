@@ -12,6 +12,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import Dao.InventaireDAO;
 import model.Inventaire;
 
@@ -37,8 +39,16 @@ public class InventaireService {
 	/* List of product Caracteristique */
     @GET
     @Path("/ListInventaire")
-    public List<Inventaire>   ListInventaire() {
-        return daoinventaire.getAll();
+    public Response  ListInventaire() {
+        return Response
+        		 .status(200)
+        	     .header("Access-Control-Allow-Origin", "*")
+        	     .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+        	     .header("Access-Control-Allow-Credentials", "true")
+        	     .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+        	     .header("Access-Control-Max-Age", "1209600")
+        		    .entity(daoinventaire.getAll())
+        		    .build();
     }
     
     

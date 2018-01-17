@@ -35,20 +35,17 @@ public class Stockage implements Serializable {
 	@Column(name="stock_solde")
 	private Integer stockSolde;
 
-	
 	//bi-directional many-to-one association to Inventaire
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy="stockage")
-	private Set<LigneInventaire> inventaires;
-
+	private Set<Categoriser> categoriser;
+	
+	
 	//bi-directional many-to-one association to Ville
 	@ManyToOne
-	@JoinColumn(name="ville_id_ville"  , referencedColumnName="ville_id_ville")
+	@JoinColumn(name="ville_id_ville" ,referencedColumnName="ville_id_ville", insertable = false, updatable = false)
 	private Ville ville;
 	
-    //bi-directional many-to-one association to Stocker
-	 @OneToMany(cascade = CascadeType.ALL,mappedBy="stockage")
-	 private Set<LigneInventaire> stockers;
-	
+	 
 	 //bi-directional many-to-one association to Stocker
      @OneToMany(cascade = CascadeType.ALL,mappedBy="stockage")
 	 private Set<Stockage_History> StockHistory;
@@ -99,28 +96,29 @@ public class Stockage implements Serializable {
 	}
     
 	@XmlTransient
-	public Set<LigneInventaire> getInventaires() {
-		return this.inventaires;
+	public Set<Categoriser> getcategoriser() {
+		return this.categoriser;
 	}
 
-	public void setInventaires(Set<LigneInventaire> inventaires) {
-		this.inventaires = inventaires;
+	public void setcategoriser(Set<Categoriser> categoriser) {
+		this.categoriser = categoriser;
 	}
 
-	public LigneInventaire addInventaire(LigneInventaire inventaire) {
-		getInventaires().add(inventaire);
+	public Categoriser addInventaire(Categoriser inventaire) {
+		getcategoriser().add(inventaire);
 		inventaire.setStockage(this);
 
 		return inventaire;
 	}
 
-	public LigneInventaire removeInventaire(LigneInventaire inventaire) {
-		getInventaires().remove(inventaire);
-		inventaire.setStockage(null);
+	public Categoriser removeInventaire(Categoriser inventaire) {
+		getcategoriser().remove(inventaire);
+		inventaire.setStockage(this);
 
 		return inventaire;
 	}
 
+    
 	public Ville getVille() {
 		return this.ville;
 	}
@@ -129,29 +127,5 @@ public class Stockage implements Serializable {
 		this.ville = ville;
 	}
 	
-	
-	
-   @XmlTransient
-	public Set<LigneInventaire> getStockers() {
-		return this.stockers;
-	}
-
-	public void setStockers(Set<LigneInventaire> stockers) {
-		this.stockers = stockers;
-	}
-
-	public LigneInventaire addStocker(LigneInventaire stocker) {
-		getStockers().add(stocker);
-		stocker.setStockage(this);
-
-		return stocker;
-	}
-
-	public LigneInventaire removeStocker(LigneInventaire stocker) {
-		getStockers().remove(stocker);
-		stocker.setStockage(null);
-
-		return stocker;
-	}
 
 }

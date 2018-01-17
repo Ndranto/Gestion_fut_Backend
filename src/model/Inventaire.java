@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 
@@ -14,12 +15,10 @@ import java.util.Set;
  * 
  */
 @Entity
-@Access(value=AccessType.FIELD)
+@Table(name="inventaire")
 @NamedQueries({
-@NamedQuery(name="Inventaire.findAll", query="SELECT i FROM Inventaire i"),
-@NamedQuery(name="Inventaire.findAllId", query="SELECT i FROM Inventaire i where i.invId = :invId"),
-@NamedQuery(name="Inventaire.findAllDate", query="SELECT i FROM Inventaire i where i.iinvDate= :iinvDate"),
-@NamedQuery(name = "situationInventaire",query="SELECT i from Inventaire i LEFT JOIN  LigneInventaire LigneInventaire where  LigneInventaire.etatFut = "+false+" and  YEAR (i.iinvDate) = 2017")})
+@NamedQuery(name="Inventaire.findAll", query="SELECT i FROM Inventaire i"),})
+@Access(value=AccessType.FIELD)
 public class Inventaire implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -37,68 +36,33 @@ public class Inventaire implements Serializable {
 
 	@Column(name="inv_qte")
 	private Integer invQte;
-
+/*
 	@Column(name="inv_type")
-	private Boolean invType;
+	private String invType;
 
+	
 	@Column(name="inv_validation_inventory")
-	private boolean invValidationInventory;
-
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy ="inventaire")
-	private Set<Utiliser> utilise;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy ="inventaire")
-	private Set<LigneInventaire> LigneInventaire;
-	
-
-	//bi-directional many-to-one association to Stockage
-	@ManyToOne(optional =false)
-	@JoinColumn(name="cli_id_client",referencedColumnName="cli_id_client",insertable = false, updatable = false)
-	private Client client;
-	
-	//bi-directional many-to-one association to Stockage
-	@ManyToOne(optional =false)
-	@JoinColumn(name="cara_id",referencedColumnName="cara_id",insertable = false, updatable = false)
+	private Boolean invValidationInventory;
+*/
+	//bi-directional many-to-one association to Caracteristique
+	@ManyToOne(optional = false)
+	@JoinColumn(name="cara_id",referencedColumnName="cara_id", insertable =false , updatable = false)
 	private Caracteristique caracteristique;
-	
-	@XmlTransient
-	public Set<LigneInventaire> getLigneInventaire() {
-		return LigneInventaire;
-	}
 
-	public void setLigneInventaire(Set<LigneInventaire> ligneInventaire) {
-		LigneInventaire = ligneInventaire;
-	}
+	/*/bi-directional many-to-one association to Client
+	@ManyToOne
+	@JoinColumn(name="cli_id_client")
+	private Client client;
+*/
 
-	@XmlTransient
-	public Set<Utiliser> getUtilise() {
-		return utilise;
-	}
-
-	public void setUtilise(Set<Utiliser> utilise) {
-		this.utilise = utilise;
-	}
-	
-	
-	public Client getClient() {
-		return client;
-	}
-    
-	public void setClient(Client client) {
-		this.client = client;
-	}
-	
-	
-	
-	public Caracteristique getCaracteristique() {
-		return caracteristique;
-	}
-
-	public void setCaracteristique(Caracteristique caracteristique) {
-		this.caracteristique = caracteristique;
-	}
-
+	//bi-directional many-to-one association to LigneInventaire
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy="Inventaires")
+	private Set<Categoriser> categoriser ;
+/*
+	//bi-directional many-to-one association to Utiliser
+	@OneToMany(mappedBy="inventaire")
+	private Set<Utiliser> utilisers;
+*/
 	public Inventaire() {
 	}
 
@@ -133,12 +97,11 @@ public class Inventaire implements Serializable {
 	public void setInvQte(Integer invQte) {
 		this.invQte = invQte;
 	}
-
-	public boolean getInvType() {
+/*	public String getInvType() {
 		return this.invType;
 	}
 
-	public void setInvType(boolean invType) {
+	public void setInvType(String invType) {
 		this.invType = invType;
 	}
 
@@ -149,5 +112,58 @@ public class Inventaire implements Serializable {
 	public void setInvValidationInventory(Boolean invValidationInventory) {
 		this.invValidationInventory = invValidationInventory;
 	}
+*/
+	public Caracteristique getCaracteristique() {
+		return this.caracteristique;
+	}
 
+	public void setCaracteristique(Caracteristique caracteristique) {
+		this.caracteristique = caracteristique;
+	}
+/*
+	public Client getClient() {
+		return this.client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+*/
+    @XmlTransient
+	public Set<Categoriser> getCategoriser() {
+		return categoriser;
+	}
+
+	public void setCategoriser(Set<Categoriser> categoriser) {
+		this.categoriser = categoriser;
+	}
+
+ 
+	
+/*
+	@XmlTransient
+	public Set<Utiliser> getUtilisers() {
+		return this.utilisers;
+	}
+	
+
+	public void setUtilisers(Set<Utiliser> utilisers) {
+		this.utilisers = utilisers;
+	}
+
+	public Utiliser addUtiliser(Utiliser utiliser) {
+		getUtilisers().add(utiliser);
+		utiliser.setInventaire(this);
+
+		return utiliser;
+	}
+
+	public Utiliser removeUtiliser(Utiliser utiliser) {
+		getUtilisers().remove(utiliser);
+		utiliser.setInventaire(null);
+
+		return utiliser;
+	}
+	
+*/
 }

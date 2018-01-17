@@ -34,7 +34,7 @@ public class Transport implements Serializable {
 	
 	//bi-directional many-to-one association to Utilisers
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy="transport")
-	private Set<Utiliser> utilisers;
+	private Set<Categoriser> Categoriser;
 
 	public Transport() {
 	}
@@ -66,12 +66,12 @@ public class Transport implements Serializable {
 	}
 
 	@XmlTransient
-	public Set<Utiliser> getUtilisers() {
-		return this.utilisers;
+	public Set<Categoriser> getCategoriser() {
+		return this.Categoriser;
 	}
 
-	public void setUtilisers(Set<Utiliser> utilisers) {
-		this.utilisers = utilisers;
+	public void setCategoriser(Set<Categoriser> Categoriser) {
+		this.Categoriser = Categoriser;
 	}
 
 

@@ -44,7 +44,7 @@ public class CatalogueFutService {
         return  Response
        		    .status(200)
                 .header("Access-Control-Allow-Origin", "*")
-                .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+                .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
                 .header("Access-Control-Allow-Credentials", "true")
                 .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
                 .header("Access-Control-Max-Age", "1209600")
@@ -70,7 +70,7 @@ public class CatalogueFutService {
       return  Response
 		 .status(200)
          .header("Access-Control-Allow-Origin", "*")
-         .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+         .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
          .header("Access-Control-Allow-Credentials", "true")
          .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
          .header("Access-Control-Max-Age", "1209600")
@@ -80,7 +80,7 @@ public class CatalogueFutService {
     
     @GET
     @Path("/futName/{NameFut}")
-    public CatalogueFut   FutName(@PathParam(value="NameFut")String Name) {
+    public CatalogueFut   FutName(@QueryParam(value="NameFut")String Name) {
         return catdao.FindByName(Name);
     }
     
@@ -167,7 +167,7 @@ public class CatalogueFutService {
     	  return Response
          		 .status(200)
   	            .header("Access-Control-Allow-Origin", "*")
-  	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+  	            .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
   	            .header("Access-Control-Allow-Credentials", "true")
   	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
   	            .header("Access-Control-Max-Age", "1209600")
@@ -184,7 +184,7 @@ public class CatalogueFutService {
         return Response
         		 .status(200)
  	            .header("Access-Control-Allow-Origin", "*")
- 	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+ 	            .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
  	            .header("Access-Control-Allow-Credentials", "true")
  	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
  	            .header("Access-Control-Max-Age", "1209600")

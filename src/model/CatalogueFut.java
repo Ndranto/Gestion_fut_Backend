@@ -1,10 +1,10 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
-import java.util.Set;
 
 
 /**
@@ -31,12 +31,12 @@ public class CatalogueFut implements Serializable {
 
 	@Column(name="fut_nom_catalogue_fut")
 	private String futNomCatalogueFut;
-
+	
 	//bi-directional many-to-one association to LigneInventaire
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="catalogueFut" )
-	private Set<LigneInventaire> ligneInventaires;
-
-	/*//bi-directional many-to-one association to Stocker
+	private Set<Categoriser> Categoriser;
+/*
+	//bi-directional many-to-one association to Stocker
 	@OneToMany(cascade = CascadeType.ALL,mappedBy="catalogueFut")
 	private Set<Stocker> stockers;
     */
@@ -68,26 +68,26 @@ public class CatalogueFut implements Serializable {
 	}
     
 	@XmlTransient
-	public Set<LigneInventaire> getLigneInventaires() {
-		return this.ligneInventaires;
+	public Set<Categoriser> getCategoriser() {
+		return Categoriser;
 	}
 
-	public void setLigneInventaires(Set<LigneInventaire> ligneInventaires) {
-		this.ligneInventaires = ligneInventaires;
+	public void setCategoriser(Set<Categoriser> categoriser) {
+		Categoriser = categoriser;
 	}
+	  
 	
-	public LigneInventaire addLigneInventaire(LigneInventaire ligneInventaire) {
-		getLigneInventaires().add(ligneInventaire);
-		ligneInventaire.setCatalogueFut(this);
+		public Categoriser addCategoriser(Categoriser Categoriser) {
+			getCategoriser().add(Categoriser);
+			Categoriser.setCatalogueFut(this);
 
-		return ligneInventaire;
-	}
+			return Categoriser;
+		}
+	public Categoriser removeCategoriser(Categoriser Categoriser) {
+		getCategoriser().remove(Categoriser);
+		Categoriser.setCatalogueFut(null);
 
-	public LigneInventaire removeLigneInventaire(LigneInventaire ligneInventaire) {
-		getLigneInventaires().remove(ligneInventaire);
-		ligneInventaire.setCatalogueFut(null);
-
-		return ligneInventaire;
+		return Categoriser;
 	}
 
 	/*@XmlTransient

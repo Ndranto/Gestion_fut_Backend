@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-
 import javax.persistence.*;
 
 
@@ -13,72 +12,78 @@ import javax.persistence.*;
 @Table(name="ligne_inventaire")
 @Access(value=AccessType.FIELD)
 @NamedQueries({
-@NamedQuery(name="LigneInvAll", query="SELECT LI FROM LigneInventaire  LI"),
-@NamedQuery(name="LigneInvId", query="SELECT LI FROM LigneInventaire LI where LI.idLi = :idLi"),
-@NamedQuery(name="LigneInvEtatFut", query="SELECT LI FROM LigneInventaire LI where LI.etatFut = :etatFut"),
-@NamedQuery(name="LigneInvSituation",query="SELECT LI FROM LigneInventaire LI where LI.inventaire.invType= :invType"),
-@NamedQuery(name="LigneInvQteFUt", query="SELECT LI FROM LigneInventaire LI where LI.qte_Fut_Inv = :qte_Fut_Inv"),
-})
+@NamedQuery(name="LigneInventaire", query="SELECT li FROM LigneInventaire li"),
+@NamedQuery(name="LigneInv.findAllId", query="SELECT  li FROM LigneInventaire  li where  li.id.invId = :invId"),
+@NamedQuery(name="LigneIn.findAllName", query="SELECT  li FROM LigneInventaire  li where  li.id.idCategoriser = :idCategoriser"),})
 public class LigneInventaire implements Serializable {
 	private static final long serialVersionUID = 1L;
   
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_li")
-	private Integer idLi;
-	
-	@Column(name="\"etat_Fut\"")
-	private boolean etatFut;
-     
-	@Column(name="\"Qte_Fut_Inv\"")
-	private double qte_Fut_Inv;
+	@EmbeddedId
+	private LigneInventairePK id;
 
-	//bi-directional many-to-one association to CatalogueFut
-	@JoinColumn(name="fut_id", referencedColumnName="fut_id", insertable =false , updatable = false)
-	@ManyToOne(optional = false)
-	private CatalogueFut catalogueFut;
-	
-	//bi-directional many-to-one association to CatalogueFut
-	@JoinColumn(name="cat_id", referencedColumnName="cat_id", insertable =false , updatable = false)
-	@ManyToOne (optional = false)
-	private Categorie categorie;
+
+	@Column(name="etat_Fut")
+	private Boolean etat_Fut;
+
+	@Column(name="nbre_fut")
+	private double nbreFut;
+
 
 	//bi-directional many-to-one association to Inventaire
-	@JoinColumn(name="inv_id" , referencedColumnName="inv_id" ,insertable =false , updatable = false)
-	@ManyToOne (optional = false)
+	/*
+	@ManyToOne(optional =  false)
+	@JoinColumn(name="inv_id" , referencedColumnName="inv_id", insertable = false, updatable = false)
 	private Inventaire inventaire;
-	//bi-directional many-to-one association to Inventaire
-	@JoinColumn(name="stock_id" , referencedColumnName="stock_id" ,insertable =false , updatable = false)
-	@ManyToOne (optional = false)
-	private Stockage stockage;
+
+
+	@ManyToOne(optional =  false)
+	@JoinColumn(name="id_categoriser" , referencedColumnName="id_categoriser", insertable = false, updatable = false)
+	private Categoriser categoriser;
+	*/
 
 	public LigneInventaire() {
 	}
 
-
-	public boolean getEtat_Fut() {
-		return this.etatFut;
+	public LigneInventaire(LigneInventairePK ligneinventairePk) {
+		this.id = ligneinventairePk;
 	}
 
-	public void setEtat_Fut(boolean etat_Fut) {
-		this.etatFut = etat_Fut;
+	public LigneInventairePK getId() {
+		return this.id;
 	}
 
-	public double getQte_Fut_Inv() {
-		return this.qte_Fut_Inv;
+	public void setId(LigneInventairePK id) {
+		this.id = id;
 	}
 
-	public void setQte_Fut_Inv(double qte_Fut_Inv) {
-		this.qte_Fut_Inv = qte_Fut_Inv;
+
+
+	public Boolean getEtat_Fut() {
+		return this.etat_Fut;
 	}
 
-	public CatalogueFut getCatalogueFut() {
-		return this.catalogueFut;
+	public void setEtat_Fut(Boolean etat_Fut) {
+		this.etat_Fut = etat_Fut;
 	}
 
-	public void setCatalogueFut(CatalogueFut catalogueFut) {
-		this.catalogueFut = catalogueFut;
+
+
+	public double getNbreFUt() {
+		return nbreFut;
 	}
+
+	public void setNbreFUt(double nbreFUt) {
+		this.nbreFut = nbreFUt;
+	}
+/*
+	public Categoriser getCategoriser() {
+		return categoriser;
+	}
+
+	public void setCategoriser(Categoriser categoriser) {
+		this.categoriser = categoriser;
+	}
+
 
 	public Inventaire getInventaire() {
 		return this.inventaire;
@@ -87,35 +92,5 @@ public class LigneInventaire implements Serializable {
 	public void setInventaire(Inventaire inventaire) {
 		this.inventaire = inventaire;
 	}
-
-	public Categorie getCategorie() {
-		return categorie;
-	}
-
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
-
-
-	public Integer getIdLi() {
-		return idLi;
-	}
-
-
-	public void setIdLi(Integer idLi) {
-		this.idLi = idLi;
-	}
-
-
-	public Stockage getStockage() {
-		return stockage;
-	}
-
-
-	public void setStockage(Stockage stockage) {
-		this.stockage = stockage;
-	}
-	
-	
-
+*/
 }

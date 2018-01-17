@@ -1,11 +1,11 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 
-import java.util.Set;
 
 
 /**
@@ -39,11 +39,14 @@ public class Client implements Serializable {
 	@ManyToOne(optional =  false)
 	@JoinColumn(name="ville_id_ville", referencedColumnName="ville_id_ville")
 	private Ville ville;
-
+/*
 	//bi-directional many-to-one association to Inventaire
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy="client")
 	private Set<Inventaire> inventaires;
-
+*/
+	//bi-directional many-to-one association to Inventaire
+		@OneToMany(cascade = CascadeType.ALL ,mappedBy="client")
+		private Set<Bon> bon;
 	public Client() {
 	}
 
@@ -86,7 +89,17 @@ public class Client implements Serializable {
 	public void setVille(Ville ville) {
 		this.ville = ville;
 	}
-  @XmlTransient
+	
+    @XmlTransient
+	public Set<Bon> getBon() {
+		return bon;
+	}
+
+	public void setBon(Set<Bon> bon) {
+		this.bon = bon;
+	}
+	
+ /* @XmlTransient
 	public Set<Inventaire> getInventaires() {
 		return this.inventaires;
 	}
@@ -108,6 +121,6 @@ public class Client implements Serializable {
 
 		return inventaire;
 	}
-	
+	*/
 
 }

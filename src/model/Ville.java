@@ -35,8 +35,9 @@ public class Ville implements Serializable {
 	private Set<Client> clients;
 
 	//bi-directional many-to-one association to Stockage
-	@OneToMany(cascade = CascadeType.ALL, mappedBy ="" )
+	@OneToMany(cascade = CascadeType.ALL, mappedBy ="ville" )
 	private Set<Stockage> stockages;
+	
 	public Ville() {
 	}
 

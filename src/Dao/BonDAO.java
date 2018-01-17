@@ -4,36 +4,36 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import model.Inventaire;
+import model.Bon;
 
-public class InventaireDAO  extends GenericImplDAO<Inventaire> implements GenericDAO<Inventaire>{
+public class BonDAO extends GenericImplDAO<Bon> implements GenericDAO<Bon>{
 
 	@Override
-	public List<Inventaire> getAll() {
-		this.QUeryName = "Inventaire.findAll";
+	public List<Bon> getAll() {
+		this.QUeryName = "Bon.findAll";
 		return this.list();
 	}
 
 	@Override
-	public List<Inventaire> FindByListId(Object i) {
+	public List<Bon> FindByListId(Object i) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Inventaire> FindByListName(String Name) {
+	public List<Bon> FindByListName(String Name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Response Create(Inventaire entite) {
+	public Response Create(Bon entite) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Response Update(Inventaire entite) {
+	public Response Update(Bon entite) {
 		// TODO Auto-generated method stub
 		return null;
 	}

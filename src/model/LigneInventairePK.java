@@ -15,10 +15,8 @@ public class LigneInventairePK implements Serializable {
 	@Column(name="inv_id", insertable=false, updatable=false)
 	private Integer invId;
 
-	@Column(name="fut_id", insertable=false, updatable=false)
-	private Integer futId;
-	@Column(name="cat_Id", insertable=false, updatable=false)
-	private Integer catId;
+	@Column(name="id_categoriser", insertable=false, updatable=false)
+	private Integer idCategoriser;
 
 	public LigneInventairePK() {
 	}
@@ -29,16 +27,10 @@ public class LigneInventairePK implements Serializable {
 		this.invId = invId;
 	}
 	public Integer getFutId() {
-		return this.futId;
+		return this.idCategoriser;
 	}
 	public void setFutId(Integer futId) {
-		this.futId = futId;
-	}
-	public Integer getCatId() {
-		return this.catId;
-	}
-	public void setCatId(Integer CatId) {
-		this.catId = CatId;
+		this.idCategoriser = futId;
 	}
 
 	public boolean equals(Object other) {
@@ -51,16 +43,15 @@ public class LigneInventairePK implements Serializable {
 		LigneInventairePK castOther = (LigneInventairePK)other;
 		return 
 			this.invId.equals(castOther.invId)
-			&& this.futId.equals(castOther.futId)
-			&& this.catId.equals(castOther.catId);
+			&& this.idCategoriser.equals(castOther.idCategoriser);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
 		hash = hash * prime + this.invId.hashCode();
-		hash = hash * prime + this.futId.hashCode();
-		hash = hash * prime + this.catId.hashCode();
+		hash = hash * prime + this.idCategoriser.hashCode();
+		
 		return hash;
 	}
 }
