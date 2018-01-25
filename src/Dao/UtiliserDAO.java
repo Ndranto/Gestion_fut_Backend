@@ -27,21 +27,21 @@ public class UtiliserDAO extends GenericImplDAO<Utiliser> implements GenericDAO<
 	}
 
 	@Override
-	public Response Create(Utiliser entite) {
+	public boolean Create(Utiliser entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Update(Utiliser entite) {
+	public boolean Update(Utiliser entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Delete(Object entite) {
+	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 	
 

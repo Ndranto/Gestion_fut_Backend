@@ -27,21 +27,21 @@ public class StockHistDAO extends GenericImplDAO<Stockage_History> implements Ge
 	}
 
 	@Override
-	public Response Create(Stockage_History entite) {
+	public boolean Create(Stockage_History entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Update(Stockage_History entite) {
+	public boolean Update(Stockage_History entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Delete(Object entite) {
+	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

@@ -2,7 +2,6 @@ package Dao;
 
 import java.util.List;
 
-import javax.ws.rs.core.Response;
 
 import model.Inventaire;
 
@@ -27,21 +26,21 @@ public class InventaireDAO  extends GenericImplDAO<Inventaire> implements Generi
 	}
 
 	@Override
-	public Response Create(Inventaire entite) {
+	public boolean Create(Inventaire entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Update(Inventaire entite) {
+	public boolean Update(Inventaire entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Delete(Object entite) {
+	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

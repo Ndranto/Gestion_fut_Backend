@@ -3,11 +3,13 @@ package model;
 import java.io.Serializable;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 
 
@@ -27,7 +29,8 @@ public class Categoriser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
 	@Column(name="id_categoriser")
 	private Integer idCategoriser;
 	
@@ -51,7 +54,7 @@ public class Categoriser implements Serializable {
 	@JoinColumn(name="fut_id", referencedColumnName="fut_id", insertable =false , updatable = false)
 	@ManyToOne (optional = false)
 	private CatalogueFut catalogueFut;
-	
+
     //bi-directional many-to-one association to CatalogueFut
 	@ManyToOne(optional =  false)
 	@JoinColumn(name="stock_id", referencedColumnName="stock_id", insertable = false, updatable = false)
@@ -63,9 +66,9 @@ public class Categoriser implements Serializable {
 	private Etat etat;
 	
 	//bi-directional many-to-one association to CatalogueFut
-	@ManyToOne(optional =  false)
-	@JoinColumn(name="inv_id", referencedColumnName="inv_id", insertable = false, updatable = false)
-	private Inventaire Inventaires;
+
+	@OneToMany(cascade = CascadeType.ALL ,mappedBy="categoriser")
+	private Set<Inventaire> Inventaires;
 
 	public Etat getEtat() {
 		return etat;
@@ -103,6 +106,7 @@ public class Categoriser implements Serializable {
 	public void setCatalogueFut(CatalogueFut catalogueFut) {
 		this.catalogueFut = catalogueFut;
 	}
+	
 
 	public BigDecimal getQte_fut() {
 		return this.qtefut;
@@ -129,12 +133,12 @@ public class Categoriser implements Serializable {
 	public void setBon(Bon bon) {
 		this.bon = bon;
 	}
-
-	public Inventaire getInventaires() {
+   @XmlTransient
+	public Set<Inventaire> getInventaires() {
 		return Inventaires;
 	}
 
-	public void setInventaires(Inventaire inventaires) {
+	public void setInventaires(Set<Inventaire> inventaires) {
 		Inventaires = inventaires;
 	}
 

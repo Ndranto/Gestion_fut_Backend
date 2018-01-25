@@ -35,25 +35,25 @@ public class CategorieDAO extends GenericImplDAO<Categorie> implements GenericDA
 	}
 
 	@Override
-	public Response Create(Categorie entite) {
+	public boolean Create(Categorie entite) {
 		Create(entite);
 		String json ="le Numero"+entite.getCatId()+"est Inserer";
-		return  Response.status(200).type("application/json").entity(json).build();
+		return false;
 	}
 
 	@Override
-	public Response Update(Categorie entite) {
+	public boolean Update(Categorie entite) {
 		  this.update(entite);
 		  String json ="le Numero"+entite.getCatFut()+"est Modifier";
-		return  Response.status(200).type("application/json").entity(json).build();
+		return  false;
 		}
 	
 
 
 	@Override
-	public Response Delete(Object entite) {
+	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	

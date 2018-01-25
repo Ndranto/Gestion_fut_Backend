@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import model.CatalogueFut;
+import model.Utilisteur;
 import Dao.CatalogueFutDAO;
 
 
@@ -20,16 +21,22 @@ public class Utilisateur {
 	/*EntityManagerFactory emfactory = Persistence.
 	createEntityManagerFactory( "Jax-rs_Gestion_Fut" );
 	EntityManager entitymanager = emfactory.
-	createEntityManager( );
+	createEntityManager( );*/
 	entitymanager.getTransaction( ).begin( );
 	Utilisteur employee = new Utilisteur( );
-	employee.setUser_Id(3);
+	employee.setUser_Id(4);
 	employee.setUser_Name( "Gopal" );
 	employee.setUse_Pw("Aller");
-	entitymanager.persist( employee );
+	
+	
+	CatalogueFut cat = new CatalogueFut();
+	cat.setFutDescrCatalogueFut("futDescrCatalogueFut");
+	cat.setFutNomCatalogueFut("jghj");
+
+	entitymanager.persist( cat );
 	entitymanager.getTransaction( ).commit( );
 	entitymanager.close( );
-	emfactory.close( );*/
+	emfactory.close( );
 		
 		/*  ---------------------Find -------------------
 	    /* EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut" );
@@ -40,7 +47,7 @@ public class Utilisateur {
 			System.out.println("PW = "+employee.getUse_Pw());/*
 			
 			 ---------------------Delete -------------------*/
-
+/*
 			CatalogueFut employee =  entitymanager.find( CatalogueFut.class, 3 );
 			entitymanager.remove( employee );
 			entitymanager.getTransaction( ).commit( );

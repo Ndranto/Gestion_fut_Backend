@@ -28,6 +28,10 @@ public class Bon implements Serializable {
 	@NotFound(action=NotFoundAction.IGNORE)
 	@Column(name="bon_num")
 	private Integer bonNum;
+	
+	@Column(name="bon_ref")
+	private String RefBon;
+
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="bon_date")
@@ -103,7 +107,23 @@ public class Bon implements Serializable {
 
 
 
-    @XmlTransient
+    public String getRefBon() {
+		return RefBon;
+	}
+
+	public void setRefBon(String refBon) {
+		RefBon = refBon;
+	}
+
+	public Type getType() {
+		return Type;
+	}
+
+	public void setType(Type type) {
+		Type = type;
+	}
+
+	@XmlTransient
 	public Set<Categoriser> getCategoriser() {
 		return categoriser;
 	}
@@ -128,14 +148,7 @@ public class Bon implements Serializable {
 		this.sortie = sortie;
 	}
 */
-	public Type getEntrer() {
-		return Type;
-	}
 
-	public void setEntrer(Type Type) {
-		this.Type = Type;
-	}
-	
 	
 
 }

@@ -2,9 +2,12 @@ package model;
 
 import java.io.Serializable;
 import java.util.Set;
+import java.util.Set;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
+
+
 
 
 /**
@@ -22,7 +25,8 @@ public class CatalogueFut implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
 	@Column(name="fut_id")
 	private Integer futId;
 
@@ -33,7 +37,7 @@ public class CatalogueFut implements Serializable {
 	private String futNomCatalogueFut;
 	
 	//bi-directional many-to-one association to LigneInventaire
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="catalogueFut" )
+	@OneToMany( mappedBy="catalogueFut",  cascade = CascadeType.ALL)
 	private Set<Categoriser> Categoriser;
 /*
 	//bi-directional many-to-one association to Stocker
@@ -42,6 +46,14 @@ public class CatalogueFut implements Serializable {
     */
 	public CatalogueFut() {
 	}
+    
+	public CatalogueFut(Integer futId, String futDescrCatalogueFut,
+		String futNomCatalogueFut) {
+	super();
+	this.futId = futId;
+	this.futDescrCatalogueFut = futDescrCatalogueFut;
+	this.futNomCatalogueFut = futNomCatalogueFut;
+}
 
 	public Integer getFutId() {
 		return this.futId;
@@ -66,7 +78,7 @@ public class CatalogueFut implements Serializable {
 	public void setFutNomCatalogueFut(String futNomCatalogueFut) {
 		this.futNomCatalogueFut = futNomCatalogueFut;
 	}
-    
+   
 	@XmlTransient
 	public Set<Categoriser> getCategoriser() {
 		return Categoriser;
@@ -77,7 +89,7 @@ public class CatalogueFut implements Serializable {
 	}
 	  
 	
-		public Categoriser addCategoriser(Categoriser Categoriser) {
+	/*	public Categoriser addCategoriser(Categoriser Categoriser) {
 			getCategoriser().add(Categoriser);
 			Categoriser.setCatalogueFut(this);
 
@@ -90,7 +102,7 @@ public class CatalogueFut implements Serializable {
 		return Categoriser;
 	}
 
-	/*@XmlTransient
+	@XmlTransient
 	public Set<Stocker> getStockers() {
 		return this.stockers;
 	}

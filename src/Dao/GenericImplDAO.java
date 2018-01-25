@@ -45,12 +45,13 @@ public abstract class GenericImplDAO<T> {
 		
 		public void create(T entity)
 		{   
-			
-			getEntityManager().getTransaction( ).begin();
-			getEntityManager().persist(entity);
-			getEntityManager().getTransaction( ).commit( );
-			getEntityManager().close( );
-			getEntityManagerFactory().close( );
+		EntityManagerFactory emfactory = getEntityManagerFactory() ;
+   		EntityManager emanage =  getEntityManager();
+   		emanage.getTransaction().begin();
+   		emanage.persist(entity);
+   		emanage.getTransaction( ).commit( );
+   		emanage.close( );
+   		emfactory.close( );
 		
 		}
        public void update(T entity)

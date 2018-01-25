@@ -27,21 +27,21 @@ public class StockageDAO extends GenericImplDAO<Stockage> implements GenericDAO<
 	}
 
 	@Override
-	public Response Create(Stockage entite) {
+	public boolean Create(Stockage entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Update(Stockage entite) {
+	public boolean Update(Stockage entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Delete(Object entite) {
+	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

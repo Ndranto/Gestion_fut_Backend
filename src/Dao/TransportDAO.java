@@ -29,21 +29,21 @@ public class TransportDAO extends GenericImplDAO<Transport> implements GenericDA
 	}
 
 	@Override
-	public Response Create(Transport entite) {
+	public boolean Create(Transport entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Update(Transport entite) {
+	public boolean Update(Transport entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Delete(Object entite) {
+	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

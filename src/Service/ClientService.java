@@ -71,12 +71,21 @@ public List<Client>   ListvilleId(@PathParam(value="ClientId")int ClientId) {
 /* add  new product */
 @POST
 @Path("/addClient")
-public Response   AddVille(Client client)
+public Response   addClient(Client client)
 { 
 	/* ecriture Json { "futId":2,"futDescrCatalogueFut": "lava","futNomCatalogueFut": "qsfqfs"}*/
 	
 	
-	return daoClient.Create(client);
+	 daoClient.Create(client);
+	return  Response
+      		 .status(201)
+	            .header("Access-Control-Allow-Origin", "*")
+	            .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+	            .header("Access-Control-Allow-Credentials", "true")
+	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+	            .header("Access-Control-Max-Age", "1209600")
+       .entity("Ajout: " )
+       .build();
 }
 @PUT
 @Path("/UpdateCLient")
@@ -90,7 +99,16 @@ public Response Update() throws Exception {
     	modelClient.setCliSoldeClient(Integer.parseInt(request.getParameter("IdCli")));
     
         
-        return daoClient.Update(modelClient);
+         daoClient.Update(modelClient);
+        return  Response
+         		 .status(201)
+   	            .header("Access-Control-Allow-Origin", "*")
+   	            .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+   	            .header("Access-Control-Allow-Credentials", "true")
+   	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+   	            .header("Access-Control-Max-Age", "1209600")
+          .entity("Ajout: " )
+          .build();
     
     }
 }

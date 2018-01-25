@@ -8,6 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import Dao.VilleDao;
 import model.Ville;
 
@@ -61,7 +62,16 @@ public Response   AddVille(Ville fut)
 	/* ecriture Json { "futId":2,"futDescrCatalogueFut": "lava","futNomCatalogueFut": "qsfqfs"}*/
 	
 	
-	return daoville.Create(fut);
+	 daoville.Create(fut);
+	return   Response
+     		 .status(201)
+	            .header("Access-Control-Allow-Origin", "*")
+	            .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+	            .header("Access-Control-Allow-Credentials", "true")
+	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+	            .header("Access-Control-Max-Age", "1209600")
+    .entity("Ajout: " )
+    .build();
 }
 @PUT
 @Path("/Update")
@@ -73,7 +83,16 @@ public Response Update() throws Exception {
     	modelville.setVilleNameVille(request.getParameter("Nom"));
     
         
-        return daoville.Update(modelville);
+         daoville.Update(modelville);
+        return  Response
+         		 .status(201)
+   	            .header("Access-Control-Allow-Origin", "*")
+   	            .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+   	            .header("Access-Control-Allow-Credentials", "true")
+   	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+   	            .header("Access-Control-Max-Age", "1209600")
+          .entity("Ajout: " )
+          .build();
     
     }
 }

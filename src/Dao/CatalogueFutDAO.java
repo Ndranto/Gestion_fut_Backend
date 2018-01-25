@@ -69,7 +69,7 @@ public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements Gen
 		return list;
 	}
 	@Override
-	public Response Create(CatalogueFut fut)
+	public boolean Create(CatalogueFut fut)
 		{    /*EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut") ;
 		      EntityManager entity = emfactory.createEntityManager();
 		      entity.getTransaction( ).begin( );
@@ -79,12 +79,24 @@ public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements Gen
 		    emfactory.close( );*/
 		    create(fut);
 			String json ="le Numero"+fut.getFutId()+"est Inserer";
-			return  Response.status(200).type("application/json").entity(json).build();
+			return false;
+	}
+
+	public boolean CreateFut(CatalogueFut fut)
+		{    /*EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut") ;
+		      EntityManager entity = emfactory.createEntityManager();
+		      entity.getTransaction( ).begin( );
+		      entity.persist(fut);
+		      entity.getTransaction( ).commit( );
+		      entity.close( );
+		    emfactory.close( );*/
+		    create(fut);
+		return true;
 	}
 	
 
 	@Override
-	public Response Update(CatalogueFut Fut) {
+	public boolean Update(CatalogueFut Fut) {
 
 		
 	   this.update(Fut);
@@ -98,13 +110,19 @@ public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements Gen
 			entitym.getTransaction().commit();
 			entitym.close();
 			factory.close();*/ 
-		String json ="le Numero"+Fut.getFutNomCatalogueFut()+"est Modifier";
+		String json ="Mise à joure succès"+ " "+ Fut.getFutNomCatalogueFut()+" "+"est Modifier";
 	
 		
-	return  Response.status(200).type("application/json").entity(json).build();}
+	return  false;
+	}
+	public boolean UpdateFut(CatalogueFut Fut) {
+		 this.update(Fut);
+		return true;
+	}
+	
 	
 	@Override
-	public Response Delete(Object Fut_id) {
+	public boolean Delete(Object Fut_id) {
 		
 		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("Jax-rs_Gestion_Fut") ;
 		EntityManager f =  emfactory.createEntityManager();
@@ -113,7 +131,7 @@ public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements Gen
 		f.remove(Catfut);
 		f.getTransaction( ).commit( );
 		String json ="le Numero"+Fut_id+"est supprimer";
-		return  Response.status(200).type("application/json").entity(json).build(); 
+		return false;
     
 	}
 	

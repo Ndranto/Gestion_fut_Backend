@@ -1,13 +1,11 @@
 package Service;
 
-
-
 import java.util.List;
 
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
@@ -100,7 +98,16 @@ public class CatalogueFutService {
     	/* ecriture Json { "futId":2,"futDescrCatalogueFut": "lava","futNomCatalogueFut": "qsfqfs"}*/
     	
     	
-    	return catdao.Create(fut);
+    	return
+    	Response
+		    .status(200)
+        .header("Access-Control-Allow-Origin", "*")
+        .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+        .header("Access-Control-Allow-Credentials", "true")
+        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+        .header("Access-Control-Max-Age", "1209600")
+        .entity( catdao.Create(fut))
+        .build();
     }
     
     /* update  a product 
@@ -120,30 +127,69 @@ public class CatalogueFutService {
     }*/
     @POST
     @Path("/addForm")
-    @Consumes("application/x-www-form-urlencoded")
-    public Response addForm() throws Exception {
-      
+    @Consumes("application/x-www-form-urlencoded ")
+    @Produces({ MediaType.TEXT_HTML })
+    @Transactional
+    public Response addForm(@FormParam("futDescrCatalogueFut") String futDescrCatalogueFut,@FormParam("futNomCatalogueFut") String futNomCatalogueFut) throws Exception {
+    	String json ="failed";
     	Catalogue = new CatalogueFut();
-    	Catalogue.setFutId((Integer.parseInt(request.getParameter("futId"))));
-    	Catalogue.setFutDescrCatalogueFut(request.getParameter("futDescrCatalogueFut"));
-    	Catalogue.setFutNomCatalogueFut(request.getParameter("futNomCatalogueFut"));
-		return catdao.Create(Catalogue);
-        
-      
+    	System.out.println(futDescrCatalogueFut + futNomCatalogueFut);
+    	Catalogue.setFutDescrCatalogueFut(futDescrCatalogueFut);
+    	Catalogue.setFutNomCatalogueFut(futNomCatalogueFut);
+		if( catdao.CreateFut(Catalogue) == true);
+		{  json ="Success";
+		 return Response
+         		 .status(201)
+   	            .header("Access-Control-Allow-Origin", "*")
+   	            .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+   	            .header("Access-Control-Allow-Credentials", "true")
+   	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+   	            .header("Access-Control-Max-Age", "1209600")
+                .entity("Ajout: " + json + Catalogue.getFutDescrCatalogueFut() +Catalogue.getFutNomCatalogueFut())
+                .build();
+		}
+			
+		
     }
-    @PUT
-    @Path("/Update")
+    @POST
+    @Path("/Update/{futId}")
     @Consumes("application/x-www-form-urlencoded")
-    public Response Update() throws Exception {
-        {    
+    @Produces({ MediaType.TEXT_HTML })
+    @Transactional
+    public Response Update(@PathParam("futId") int futId,
+    		@FormParam("futDescrCatalogueFut") String futDescrCatalogueFut,
+    		@FormParam("futNomCatalogueFut") String futNomCatalogueFut ) throws Exception {
+          //int id = Integer.parseInt(request.getParameter("futId"));
+    	
         	Catalogue = new CatalogueFut();
-        	Catalogue.setFutId((Integer.parseInt(request.getParameter("futId"))));
-        	Catalogue.setFutDescrCatalogueFut(request.getParameter("futDescrCatalogueFut"));
-        	Catalogue.setFutNomCatalogueFut(request.getParameter("futNomCatalogueFut"));
-            
-            return catdao.Update(Catalogue);
+        	Catalogue.setFutId(futId);
+        	Catalogue.setFutDescrCatalogueFut(futDescrCatalogueFut);
+        	Catalogue.setFutNomCatalogueFut(futNomCatalogueFut);
+        	 String json ="failed";
+            if( catdao.UpdateFut(Catalogue))
+            { json ="success";
+             return Response
+             		 .status(201)
+        	            .header("Access-Control-Allow-Origin", "*")
+        	            .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+        	            .header("Access-Control-Allow-Credentials", "true")
+        	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+        	            .header("Access-Control-Max-Age", "1209600")
+                     .entity("Modification: " + json +" "+ Catalogue.getFutDescrCatalogueFut() +" " +Catalogue.getFutNomCatalogueFut())
+                     .build();
+            }
+            else{return Response
+            		 .status(201)
+     	            .header("Access-Control-Allow-Origin", "*")
+     	            .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+     	            .header("Access-Control-Allow-Credentials", "true")
+     	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+     	            .header("Access-Control-Max-Age", "1209600")
+                  .entity("Modification: " + json + Catalogue.getFutDescrCatalogueFut() +Catalogue.getFutNomCatalogueFut())
+                  .build();
+          }
         
-        }
+	
     }
     
     
@@ -152,8 +198,29 @@ public class CatalogueFutService {
     @Path("/Delete/{IdFut}")
     public  Response  Delete(@PathParam(value="IdFut")int IdFut)
     	{
-    
-        return   catdao.Delete(IdFut);
+    	String json ="Votre suppression n'est pas éffectué";
+    	if(catdao.Delete(IdFut) ==true)
+    	{
+    		json ="Effectuer";
+        return   
+        Response
+		 .status(201)
+        .header("Access-Control-Allow-Origin", "*")
+        .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+        .header("Access-Control-Allow-Credentials", "true")
+        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+        .header("Access-Control-Max-Age", "1209600")
+     .entity("Suppression: " + json + Catalogue.getFutDescrCatalogueFut() +Catalogue.getFutNomCatalogueFut())
+     .build();
+    	}
+    	else{return Response.status(201)
+    	        .header("Access-Control-Allow-Origin", "*")
+    	        .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+    	        .header("Access-Control-Allow-Credentials", "true")
+    	        .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+    	        .header("Access-Control-Max-Age", "1209600")
+    	     .entity("Modification: " + json + Catalogue.getFutDescrCatalogueFut() +Catalogue.getFutNomCatalogueFut())
+    	     .build(); }
     	}
  
     

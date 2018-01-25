@@ -23,7 +23,8 @@ public class Inventaire implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
 	@Column(name="inv_id")
 	private Integer invId;
 
@@ -56,8 +57,9 @@ public class Inventaire implements Serializable {
 */
 
 	//bi-directional many-to-one association to LigneInventaire
-	@OneToMany(cascade = CascadeType.ALL ,mappedBy="Inventaires")
-	private Set<Categoriser> categoriser ;
+	@ManyToOne(optional =  false)
+	@JoinColumn(name="id_categoriser", referencedColumnName="id_categoriser", insertable = false, updatable = false)
+	private Categoriser categoriser ;
 /*
 	//bi-directional many-to-one association to Utiliser
 	@OneToMany(mappedBy="inventaire")
@@ -129,12 +131,12 @@ public class Inventaire implements Serializable {
 		this.client = client;
 	}
 */
-    @XmlTransient
-	public Set<Categoriser> getCategoriser() {
+  
+	public Categoriser getCategoriser() {
 		return categoriser;
 	}
 
-	public void setCategoriser(Set<Categoriser> categoriser) {
+	public void setCategoriser(Categoriser categoriser) {
 		this.categoriser = categoriser;
 	}
 

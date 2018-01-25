@@ -8,7 +8,6 @@
 		<class>model.Client</class>
 		<class>model.Inventaire</class>
 		<class>model.Stockage</class>
-		<class>model.Stocker</class>
 		<class>model.StockerPK</class>
 		<class>model.Transport</class>
 		<class>model.UtiliserPK</class>
@@ -20,7 +19,6 @@
 		<class>model.Bon</class>
 		<class>model.Type</class>
 		<class>model.Etat</class>
-		<class>model.Sortie</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
                <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>

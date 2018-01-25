@@ -27,21 +27,21 @@ public class CaracteristiqueDAO extends GenericImplDAO<Caracteristique> implemen
 	}
 
 	@Override
-	public Response Create(Caracteristique entite) {
+	public boolean Create(Caracteristique entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Update(Caracteristique entite) {
+	public boolean Update(Caracteristique entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Delete(Object entite) {
+	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

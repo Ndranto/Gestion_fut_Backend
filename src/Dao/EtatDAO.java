@@ -4,36 +4,36 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import model.Bon;
+import model.Etat;
 
-public class BonDAO extends GenericImplDAO<Bon> implements GenericDAO<Bon>{
+public class EtatDAO extends GenericImplDAO<Etat> implements GenericDAO<Etat> {
 
 	@Override
-	public List<Bon> getAll() {
-		this.QUeryName = "Bon.findAll";
+	public List<Etat> getAll() {
+		this.QUeryName = "Etat.findAll";
 		return this.list();
 	}
 
 	@Override
-	public List<Bon> FindByListId(Object i) {
+	public List<Etat> FindByListId(Object i) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Bon> FindByListName(String Name) {
+	public List<Etat> FindByListName(String Name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean Create(Bon entite) {
+	public boolean Create(Etat entite) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean Update(Bon entite) {
+	public boolean Update(Etat entite) {
 		// TODO Auto-generated method stub
 		return false;
 	}

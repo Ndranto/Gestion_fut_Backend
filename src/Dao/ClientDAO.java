@@ -31,14 +31,14 @@ public class ClientDAO  extends GenericImplDAO<Client> implements GenericDAO<Cli
 	}
 
 	@Override
-	public Response Create(Client entite) {
+	public boolean Create(Client entite) {
 		 create(entite);
 		 String json ="le Numero"+entite.getCliIdClient()+"est Inserer";
-	     return  Response.status(200).type("application/json").entity(json).build();
+	     return  false;
 	}
 
 	@Override
-	public Response Update(Client entite) {
+	public boolean Update(Client entite) {
 		
 		   this.update(entite);
 			/* EntityManagerFactory factory = getEntityManagerFactory();
@@ -54,13 +54,13 @@ public class ClientDAO  extends GenericImplDAO<Client> implements GenericDAO<Cli
 			String json ="le Numero"+entite.getCliIdClient()+"est Modifier";
 		
 			
-		return  Response.status(200).type("application/json").entity(json).build();
+		return  false;
 	}
 
 	@Override
-	public Response Delete(Object entite) {
+	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

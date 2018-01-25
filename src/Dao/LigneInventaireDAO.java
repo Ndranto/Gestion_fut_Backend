@@ -45,21 +45,21 @@ public class LigneInventaireDAO extends GenericImplDAO<LigneInventaire> implemen
 	}
 
 	@Override
-	public Response Create(LigneInventaire entite) {
+	public boolean Create(LigneInventaire entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Update(LigneInventaire entite) {
+	public boolean Update(LigneInventaire entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Delete(Object entite) {
+	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

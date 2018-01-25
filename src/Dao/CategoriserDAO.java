@@ -26,21 +26,21 @@ public class CategoriserDAO extends GenericImplDAO<Categoriser> implements Gener
 	}
 
 	@Override
-	public Response Create(Categoriser entite) {
+	public boolean Create(Categoriser entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Update(Categoriser entite) {
+	public boolean Update(Categoriser entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 	@Override
-	public Response Delete(Object entite) {
+	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }

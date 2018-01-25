@@ -29,14 +29,13 @@ public class VilleDao extends GenericImplDAO<Ville> implements GenericDAO<Ville>
 	}
 
 	@Override
-	public Response Create(Ville entite) {
+	public boolean Create(Ville entite) {
 		 create(entite);
 		 String json ="le Numero"+entite.getVilleIdVille()+"est Inserer";
-	     return  Response.status(200).type("application/json").entity(json).build();
-	}
+	     return false;}
 
 	@Override
-	public Response Update(Ville entite) {
+	public boolean Update(Ville entite) {
 		
 		   this.update(entite);
 			/* EntityManagerFactory factory = getEntityManagerFactory();
@@ -52,13 +51,13 @@ public class VilleDao extends GenericImplDAO<Ville> implements GenericDAO<Ville>
 			String json ="le Numero"+entite.getVilleIdVille()+"est Modifier";
 		
 			
-		return  Response.status(200).type("application/json").entity(json).build();
+		return  false;
 	}
 
 	@Override
-	public Response Delete(Object entite) {
+	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
 
 }
