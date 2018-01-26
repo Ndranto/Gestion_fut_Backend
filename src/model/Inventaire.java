@@ -46,9 +46,7 @@ public class Inventaire implements Serializable {
 	private Boolean invValidationInventory;
 */
 	//bi-directional many-to-one association to Caracteristique
-	@ManyToOne(optional = false)
-	@JoinColumn(name="cara_id",referencedColumnName="cara_id", insertable =false , updatable = false)
-	private Caracteristique caracteristique;
+
 
 	/*/bi-directional many-to-one association to Client
 	@ManyToOne
@@ -115,13 +113,7 @@ public class Inventaire implements Serializable {
 		this.invValidationInventory = invValidationInventory;
 	}
 */
-	public Caracteristique getCaracteristique() {
-		return this.caracteristique;
-	}
 
-	public void setCaracteristique(Caracteristique caracteristique) {
-		this.caracteristique = caracteristique;
-	}
 /*
 	public Client getClient() {
 		return this.client;

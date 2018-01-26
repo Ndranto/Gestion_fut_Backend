@@ -44,4 +44,10 @@ public class StockHistDAO extends GenericImplDAO<Stockage_History> implements Ge
 		return false;
 	}
 
+	@Override
+	public Stockage_History findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

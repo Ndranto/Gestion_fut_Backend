@@ -3,6 +3,7 @@ package Dao;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
+
 import model.Ville;
 
 public class VilleDao extends GenericImplDAO<Ville> implements GenericDAO<Ville> {
@@ -58,6 +59,12 @@ public class VilleDao extends GenericImplDAO<Ville> implements GenericDAO<Ville>
 	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Ville findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

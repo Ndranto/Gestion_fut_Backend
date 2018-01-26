@@ -62,4 +62,10 @@ public class LigneInventaireDAO extends GenericImplDAO<LigneInventaire> implemen
 		return false;
 	}
 
+	@Override
+	public LigneInventaire findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

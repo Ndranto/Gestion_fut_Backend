@@ -19,8 +19,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import Dao.BonDAO;
+import Dao.CaracteristiqueDAO;
+import Dao.ClientDAO;
 import model.Bon;
+import model.Caracteristique;
 import model.CatalogueFut;
+import model.Client;
 
 
 @Path("/Bon")
@@ -51,16 +55,29 @@ public class BonService {
     }
     
     @POST
-    @Path("/addForm")
+    @Path("/addbon")
     @Consumes("application/x-www-form-urlencoded ")
     @Produces({ MediaType.TEXT_HTML })
     @Transactional
-    public Response addForm(@FormParam("BonDate") Date BonDate,@FormParam("refBon") String refBon) throws Exception {
+    public Response addForm(@FormParam("BonDate") Date BonDate,@FormParam("refBon") String refBon ,
+    		@FormParam("BonValidation") boolean BonValidation,@FormParam("qteTotal") Double qteTotal,
+    		@FormParam("clientName") String clientName,@FormParam("caractere") String caractere) throws Exception 
+    {
     	String json ="failed";
+    	System.out.println(refBon+" " +clientName+" "+caractere+" " +BonDate+" "+caractere);
+ 	modelBon.setQteTotal(qteTotal);
+    	ClientDAO daoCLi = new ClientDAO();
+    	Client client = daoCLi.FindByName(clientName);	
+    
+    	CaracteristiqueDAO daoCaract  =  new CaracteristiqueDAO();
+    	Caracteristique caractModel = daoCaract.findName(caractere);
+    	modelBon.setClient(client);
+    	modelBon.setCaracteristique(caractModel);
     	modelBon.setBonDate(BonDate);
     	modelBon.setRefBon(refBon);
-    	modelBon.setBonValidation(true);
-		if( dao.Create(modelBon) == true);
+    	modelBon.setBonValidation(BonValidation);
+    	  client.addBon(modelBon);
+		if(dao.Create(modelBon));
 		{  json ="Success";
 		 return Response
          		 .status(201)
@@ -69,11 +86,12 @@ public class BonService {
    	            .header("Access-Control-Allow-Credentials", "true")
    	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
    	            .header("Access-Control-Max-Age", "1209600")
-                .entity("Ajout: ")
+                .entity("Ajout: ref"+" " +modelBon.getRefBon())
                 .build();
-		}
-			
+	}
+ 		
+    }
 		
     }
 
-}
+

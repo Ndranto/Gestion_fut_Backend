@@ -5,6 +5,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlTransient;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import java.util.Set;
 
 
@@ -15,7 +18,8 @@ import java.util.Set;
 @Entity
 @Access(value=AccessType.FIELD)
 @NamedQueries({
-@NamedQuery(name="Caracteristique.findAll", query="SELECT C FROM Caracteristique C"),})
+@NamedQuery(name="Caracteristique.findAll", query="SELECT C FROM Caracteristique C"),
+@NamedQuery(name="Caracteristique.findAllName", query="SELECT C FROM Caracteristique C WHERE C.caraNom = :caraNom "),})
 public class Caracteristique implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -27,10 +31,18 @@ public class Caracteristique implements Serializable {
 
 	@Column(name="cara_nom")
 	private String caraNom;
-
-	//bi-directional many-to-one association to Inventaire
+	
+	//bi-directional many-to-one association to CatalogueFut
+		@NotFound(action=NotFoundAction.IGNORE)
+		@ManyToOne(optional =  false)
+		@JoinColumn(name="type_id", referencedColumnName="type_id", insertable = false, updatable = false)
+		private Type Type;
+		
+		
+		
+	//bi-directional many-to-one association to Bon
 	@OneToMany(cascade = CascadeType.ALL ,mappedBy="caracteristique")
-	private Set<Inventaire> inventaires;
+	private Set<Bon> Bons;
 
 	public Caracteristique() {
 	}
@@ -52,26 +64,26 @@ public class Caracteristique implements Serializable {
 	}
 	
     @XmlTransient
-	public Set<Inventaire> getInventaires() {
-		return this.inventaires;
+	public Set<Bon> getBons() {
+		return this.Bons;
 	}
 
-	public void setInventaires(Set<Inventaire> inventaires) {
-		this.inventaires = inventaires;
+	public void setBons(Set<Bon> Bons) {
+		this.Bons = Bons;
 	}
 
-public Inventaire addInventaire(Inventaire inventaire) {
-		getInventaires().add(inventaire);
-		inventaire.setCaracteristique(this);
+public Bon addBon(Bon Bon) {
+		getBons().add(Bon);
+		Bon.setCaracteristique(this);
 
-		return inventaire;
+		return Bon;
 	}
 
-	public Inventaire removeInventaire(Inventaire inventaire) {
-		getInventaires().remove(inventaire);
-		inventaire.setCaracteristique(null);
+	public Bon removeBon(Bon Bon) {
+		getBons().remove(Bon);
+		Bon.setCaracteristique(null);
 
-		return inventaire;
+		return Bon;
 	}
 
 }

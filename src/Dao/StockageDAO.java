@@ -44,4 +44,10 @@ public class StockageDAO extends GenericImplDAO<Stockage> implements GenericDAO<
 		return false;
 	}
 
+	@Override
+	public Stockage findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

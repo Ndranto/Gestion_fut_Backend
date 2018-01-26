@@ -1,11 +1,14 @@
 package Dao;
 import java.util.List;
 
+import javax.persistence.Query;
 import javax.ws.rs.core.Response;
 
 import model.*;
 
 public class TypeDAO  extends GenericImplDAO<Type> implements GenericDAO<Type>{
+
+	public ConnectionFactory daoFactory;
 
 	@Override
 	public List<Type> getAll() {
@@ -43,6 +46,15 @@ public class TypeDAO  extends GenericImplDAO<Type> implements GenericDAO<Type>{
 	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Type findName(String Name) {
+		daoFactory = new ConnectionFactory();
+	    Query query = daoFactory.getEntityManager("Jax-rs_Gestion_Fut").createNamedQuery("Type.findAllName");
+		query.setParameter("NameFut",Name);
+		Type list = (Type) query.getSingleResult();
+		return null;
 	}
 
 }

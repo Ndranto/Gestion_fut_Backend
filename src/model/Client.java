@@ -98,6 +98,12 @@ public class Client implements Serializable {
 	public void setBon(Set<Bon> bon) {
 		this.bon = bon;
 	}
+	public Bon addBon(Bon bon) {
+		getBon().add(bon);
+		bon.setClient(this);
+
+		return bon;
+	}
 	
  /* @XmlTransient
 	public Set<Inventaire> getInventaires() {

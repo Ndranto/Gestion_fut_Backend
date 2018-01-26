@@ -46,4 +46,10 @@ public class TransportDAO extends GenericImplDAO<Transport> implements GenericDA
 		return false;
 	}
 
+	@Override
+	public Transport findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

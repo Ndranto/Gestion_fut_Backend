@@ -56,5 +56,12 @@ public class CategorieDAO extends GenericImplDAO<Categorie> implements GenericDA
 		return false;
 	}
 
+
+	@Override
+	public Categorie findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

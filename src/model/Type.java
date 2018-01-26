@@ -16,7 +16,11 @@ import org.hibernate.annotations.NotFoundAction;
  */
 @Entity
 @Table
-@NamedQuery(name="Type.findAll", query="SELECT e FROM Type e")
+
+@NamedQueries({
+@NamedQuery(name="Type.findAll", query="SELECT T FROM Type T"),
+@NamedQuery(name="Type.findAllId", query="SELECT T  FROM Type T where T.typeId = :typeId"),
+@NamedQuery(name="Type.findAllName", query="SELECT T FROM Type T where T.TypeName = :TypeName"),})
 public class Type implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,15 +35,15 @@ public class Type implements Serializable {
 	private String TypeName;
 	
 		@OneToMany(cascade = CascadeType.ALL, mappedBy="Type" )
-		private Set<Bon> bon;
+		private Set<Caracteristique> Caracteristique;
 		
     @XmlTransient
-	public Set<Bon> getBon() {
-			return bon;
+	public Set<Caracteristique> getCaracteristique() {
+			return Caracteristique;
 		}
 
-		public void setBon(Set<Bon> bon) {
-			this.bon = bon;
+		public void setCaracteristique(Set<Caracteristique> Caracteristique) {
+			this.Caracteristique = Caracteristique;
 		}
 
 	public Type() {

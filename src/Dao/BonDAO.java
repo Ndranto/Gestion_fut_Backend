@@ -28,8 +28,8 @@ public class BonDAO extends GenericImplDAO<Bon> implements GenericDAO<Bon>{
 
 	@Override
 	public boolean Create(Bon entite) {
-		// TODO Auto-generated method stub
-		return false;
+		this.create(entite);
+		return true;
 	}
 
 	@Override
@@ -42,6 +42,12 @@ public class BonDAO extends GenericImplDAO<Bon> implements GenericDAO<Bon>{
 	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Bon findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

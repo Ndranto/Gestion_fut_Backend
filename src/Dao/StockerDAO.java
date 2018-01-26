@@ -44,4 +44,10 @@ public class StockerDAO extends GenericImplDAO<Stocker>implements GenericDAO<Sto
 		return false;
 	}
 
+	@Override
+	public Stocker findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

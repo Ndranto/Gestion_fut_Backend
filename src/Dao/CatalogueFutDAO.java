@@ -50,7 +50,6 @@ public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements Gen
 		this.parameter = new String[1];
 		this.parameter[0] = "NameFut";
 		this.QUeryName =  "CatalogueFut.findAllName";
-		
 		return this.FindName(Name);
 	}
 	
@@ -133,6 +132,13 @@ public class CatalogueFutDAO extends GenericImplDAO<CatalogueFut> implements Gen
 		String json ="le Numero"+Fut_id+"est supprimer";
 		return false;
     
+	}
+
+
+	@Override
+	public CatalogueFut findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

@@ -102,6 +102,15 @@ public abstract class GenericImplDAO<T> {
 		getEntityManagerFactory().close();
 		return list;
        }
+       
+       public T FindNom (Object value)
+       {  
+  Query query = getEntityManager().createNamedQuery(this.QUeryName);
+		query.setParameter(this.parameter[0],value);
+		T list = (T) query.getSingleResult();
+		getEntityManagerFactory().close();
+		return list;
+       }
 		
 		
 		

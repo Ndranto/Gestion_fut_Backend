@@ -30,13 +30,13 @@ public class ClientService {
     private HttpServletResponse response;
 
 private Client modelClient;
-private ClientDAO daoClient;
+private ClientDAO daoClient = new ClientDAO();
 
 /* get all to list */
 @GET
 @Path("/ListClient")
 public Response  ListVille() {
-	daoClient = new ClientDAO();
+	
 
    return Response
 	 .status(200)
@@ -53,8 +53,8 @@ public Response  ListVille() {
 @GET
 @Path("/ClientName/{ClientName}")
 @Produces(MediaType.APPLICATION_JSON+";charset=UTF-8")
-public List<Client>   ListVilleName(@PathParam(value="ClientName")String ClientName) {
-    return daoClient.FindByListName(ClientName);
+public Client   ListClientName(@PathParam(value="ClientName")String ClientName) {
+    return daoClient.FindByName(ClientName);
 }
 
 

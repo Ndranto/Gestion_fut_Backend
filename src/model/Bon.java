@@ -23,9 +23,10 @@ import java.util.Set;
 public class Bon implements Serializable {
 	private static final long serialVersionUID = 1L;
     
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
-	@NotFound(action=NotFoundAction.IGNORE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
 	@Column(name="bon_num")
 	private Integer bonNum;
 	
@@ -39,9 +40,9 @@ public class Bon implements Serializable {
 
 	@Column(name="bon_validation")
 	private Boolean bonValidation;
-
-	@Column(name="cli_id_client")
-	private Integer cliIdClient;
+	
+	@Column(name="bon_qte_total")
+	private Double qteTotal;
 
 
 	//bi-directional many-to-one association to LigneInventaire
@@ -55,19 +56,26 @@ public class Bon implements Serializable {
 	private Sortie sortie;
 	*/
 	
-	//bi-directional many-to-one association to CatalogueFut
-	@NotFound(action=NotFoundAction.IGNORE)
-	@ManyToOne(optional =  false)
-	@JoinColumn(name="type_id", referencedColumnName="type_id", insertable = false, updatable = false)
-	private Type Type;
+	
 	
 	//bi-directional many-to-one association to CatalogueFut
 	@ManyToOne(optional =  false)
-	@JoinColumn(name="cli_id_client", referencedColumnName="cli_id_client", insertable = false, updatable = false)
+	@JoinColumn(name="cli_id_client", referencedColumnName="cli_id_client", insertable = true, updatable = false)
 	private Client client;
 	
+	@ManyToOne(optional = false)
+	@JoinColumn(name="cara_id",referencedColumnName="cara_id", insertable =true , updatable = false)
+	private Caracteristique caracteristique;
 	
 	
+	public Caracteristique getCaracteristique() {
+		return caracteristique;
+	}
+
+	public void setCaracteristique(Caracteristique caracteristique) {
+		this.caracteristique = caracteristique;
+	}
+
 	public Bon() {
 		
 	}
@@ -96,18 +104,19 @@ public class Bon implements Serializable {
 		this.bonValidation = bonValidation;
 	}
 
-	public Integer getCliIdClient() {
-		return this.cliIdClient;
+
+
+
+
+    public Double getQteTotal() {
+		return qteTotal;
 	}
 
-	public void setCliIdClient(Integer cliIdClient) {
-		this.cliIdClient = cliIdClient;
+	public void setQteTotal(Double qteTotal) {
+		this.qteTotal = qteTotal;
 	}
 
-
-
-
-    public String getRefBon() {
+	public String getRefBon() {
 		return RefBon;
 	}
 
@@ -115,13 +124,7 @@ public class Bon implements Serializable {
 		RefBon = refBon;
 	}
 
-	public Type getType() {
-		return Type;
-	}
 
-	public void setType(Type type) {
-		Type = type;
-	}
 
 	@XmlTransient
 	public Set<Categoriser> getCategoriser() {

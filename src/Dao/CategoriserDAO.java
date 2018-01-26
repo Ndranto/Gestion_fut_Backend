@@ -3,6 +3,7 @@ package Dao;
 import java.util.List;
 
 import javax.ws.rs.core.Response;
+
 import model.Categoriser;
 
 public class CategoriserDAO extends GenericImplDAO<Categoriser> implements GenericDAO<Categoriser>  {
@@ -41,6 +42,12 @@ public class CategoriserDAO extends GenericImplDAO<Categoriser> implements Gener
 	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Categoriser findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

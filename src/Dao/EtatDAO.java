@@ -44,4 +44,10 @@ public class EtatDAO extends GenericImplDAO<Etat> implements GenericDAO<Etat> {
 		return false;
 	}
 
+	@Override
+	public Etat findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

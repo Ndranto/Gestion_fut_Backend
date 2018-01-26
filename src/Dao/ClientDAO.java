@@ -2,11 +2,15 @@ package Dao;
 
 import java.util.List;
 
+import javax.persistence.Query;
 import javax.ws.rs.core.Response;
 
+import model.CatalogueFut;
 import model.Client;
 
 public class ClientDAO  extends GenericImplDAO<Client> implements GenericDAO<Client> {
+	
+	public ConnectionFactory daoFactory;
 	@Override
 	public List<Client> getAll() {
 		this.QUeryName = "Client.findAll";
@@ -29,7 +33,7 @@ public class ClientDAO  extends GenericImplDAO<Client> implements GenericDAO<Cli
 		this.QUeryName =  "Client.findAllName";
 		return this.FindName(Name);
 	}
-
+   
 	@Override
 	public boolean Create(Client entite) {
 		 create(entite);
@@ -61,6 +65,19 @@ public class ClientDAO  extends GenericImplDAO<Client> implements GenericDAO<Cli
 	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Client findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public Client FindByName(String Name) {
+		this.parameter = new String[1];
+		this.parameter[0] = "cliNom";
+		this.QUeryName =  "Client.findAllName";
+		return this.FindNom(Name);
 	}
 
 }

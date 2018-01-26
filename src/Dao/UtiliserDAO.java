@@ -43,6 +43,12 @@ public class UtiliserDAO extends GenericImplDAO<Utiliser> implements GenericDAO<
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public Utiliser findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

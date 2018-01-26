@@ -2,7 +2,6 @@ package Dao;
 
 import java.util.List;
 
-
 import model.Inventaire;
 
 public class InventaireDAO  extends GenericImplDAO<Inventaire> implements GenericDAO<Inventaire>{
@@ -41,6 +40,12 @@ public class InventaireDAO  extends GenericImplDAO<Inventaire> implements Generi
 	public boolean Delete(Object entite) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Inventaire findName(String Name) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
