@@ -16,8 +16,11 @@ public class StockageDAO extends GenericImplDAO<Stockage> implements GenericDAO<
 
 	@Override
 	public List<Stockage> FindByListId(Object i) {
-		// TODO Auto-generated method stub
-		return null;
+		this.parameter = new String[1];
+		this.parameter[0]="stockId";
+		this.QUeryName ="Stockage.findAllId";
+		return this.FindId((int) i);
+		
 	}
 
 	@Override
