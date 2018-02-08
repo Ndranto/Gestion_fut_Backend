@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -23,7 +24,8 @@ public class CategoriserService {
 	
     @GET
     @Path("/getall")
-    public Response ListCategoriser() {
+    public Response ListCategoriser() 
+    {
       
       return  Response
 		 .status(200)
@@ -35,5 +37,19 @@ public class CategoriserService {
          .entity(daoCatg.getAll())
          .build();
     }
-
+    @GET
+    @Path("/Detailsfut")
+    public Response  SituationFut(@QueryParam(value="etatFut")String etatFut,@QueryParam(value="futId")int futId) {
+       
+        return 
+                Response
+        		    .status(200)
+                .header("Access-Control-Allow-Origin", "*")
+                .header("Access-Control-Allow-Headers", "origin, content-Type, accept, authorization")
+                .header("Access-Control-Allow-Credentials", "true")
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+                .header("Access-Control-Max-Age", "1209600")
+                .entity(daoCatg.DetailsFutActuel(etatFut,futId))
+                .build();
+    }
 }

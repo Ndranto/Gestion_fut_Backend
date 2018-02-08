@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name="catalogue_fut")
 @Access(value=AccessType.FIELD)
 @NamedQueries({
-@NamedQuery(name="CatalogueFut.findAll", query="SELECT c FROM CatalogueFut c"),
+@NamedQuery(name="CatalogueFut.findAll", query="SELECT c FROM CatalogueFut c order by c.futId"),
 @NamedQuery(name="CatalogueFut.findAllId", query="SELECT c FROM CatalogueFut c where c.futId = :futId"),
 @NamedQuery(name="CatalogueFut.findAllName", query="SELECT c FROM CatalogueFut c where c.futNomCatalogueFut = :NameFut"),})
 public class CatalogueFut implements Serializable {

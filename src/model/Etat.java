@@ -22,7 +22,7 @@ public class Etat implements Serializable {
 	private Integer etatId;
 
 	@Column(name="\"etat_Name\"")
-	private String etat_Name;
+	private Boolean etat_Name;
     
 	//bi-directional many-to-one association to LigneInventaire
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="etat" )
@@ -39,11 +39,11 @@ public class Etat implements Serializable {
 		this.etatId = etatId;
 	}
 
-	public String getEtat_Name() {
+	public Boolean getEtat_Name() {
 		return this.etat_Name;
 	}
 
-	public void setEtat_Name(String etat_Name) {
+	public void setEtat_Name(Boolean etat_Name) {
 		this.etat_Name = etat_Name;
 	}
     @XmlTransient
